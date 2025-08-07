@@ -12,7 +12,7 @@ export const authCodeFlowConfig: AuthConfig = {
   clientId: `${clientId}`, // Your Angular app's client ID
   responseType: 'code',
   // scope: 'openid profile email offline_access api://<spring-boot-client-id>/access_as_user',
-  scope: `api://${clientId}/.default\'` ,
+  scope: `api://${clientId}/access_as_user` ,
   showDebugInformation: true,
   strictDiscoveryDocumentValidation: false,
   silentRefreshRedirectUri: `${redirectUri}/silent-refresh.html`,
@@ -28,7 +28,9 @@ export function initializeAuth(oauthService: OAuthService) {
     return oauthService.loadDiscoveryDocumentAndTryLogin()
       .then(() => {
         if (oauthService.hasValidAccessToken()) {
-          console.log('Access Token:', oauthService.getAccessToken());
+          const token = oauthService.getAccessToken();
+          console.log('Access Token:', token);
+          console.log('Token Claims:', oauthService.getIdentityClaims());
         }
       })
       .catch((error) => {

@@ -7,22 +7,23 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
 import {OAuthModule, OAuthService, provideOAuthClient} from 'angular-oauth2-oidc';
 import {initializeAuth} from './core/security/auth.config';
+import {AuthInterceptor} from './core/security/auth.interceptor';
 
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([])),
-    provideOAuthClient({
-      resourceServer: {
-        allowedUrls: ['http://localhost:8080/api'],
-        sendAccessToken: true,
-      },
-    }),
+    provideHttpClient(withInterceptorsFromDi()),
+    provideOAuthClient(), // Provides OAuthService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAuth,
@@ -30,4 +31,5 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
   ],
+
 };
