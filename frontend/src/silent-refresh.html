@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Silent Refresh</title>
+</head>
+<body>
+<script>
+  window.parent.postMessage(window.location.href, window.location.origin);
+</script>
+</body>
+</html>
+
+
+
+<!--Why It’s Needed:-->
+
+<!--Without a registered silentRefreshRedirectUri, Azure Entra ID will reject silent refresh requests, causing token renewal to fail.-->
+<!--The silent-refresh.html file is a simple HTML page with a script to handle the redirect response and communicate with the parent window.-->
