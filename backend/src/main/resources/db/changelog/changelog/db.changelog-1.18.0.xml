@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="20250803-1" author="lin.pengpeng">
+        <createTable tableName="AppUser">
+            <column autoIncrement="true" computed="false" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__AppUser__3213E83FDDC3ECDE"/>
+            </column>
+            <column computed="false" name="emailAddress" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="lanId" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="firstname" type="varchar(255)"/>
+            <column computed="false" name="fullname" type="varchar(255)"/>
+            <column computed="false" name="lastname" type="varchar(255)"/>
+            <column computed="false" name="middlename" type="varchar(255)"/>
+            <column computed="false" name="password" type="varchar(100)"/>
+
+            <column computed="false" name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" defaultValueComputed="${now}" name="accessDateTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department"
+                    type="varchar(255)" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="jobTitle"
+                    type="varchar(255)" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="photo"
+                    type="varbinary(max)" >
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+
+        <createTable tableName="AppUserRole">
+            <column autoIncrement="true" computed="false" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__AppUserR__3213E83FD3F201AA"/>
+            </column>
+            <column computed="false" name="AppUser_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="role" type="varchar(25)"/>
+        </createTable>
+
+        <createTable tableName="UserAccess">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__UserAccess__id"/>
+            </column>
+            <column computed="false" name="AppUser_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="accessDateTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="AppUserRole"/>
+            <dropTable tableName="AppUser"/>
+            <dropTable tableName="UserAccess"/>
+        </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>
