@@ -21,7 +21,7 @@ export class Profile implements OnInit {
   }
 
   callApi() {
-    this.http.get('http://localhost:8080/api/protected').subscribe({
+    this.http.get('http://localhost:8080/api/protected', {responseType: 'text'}).subscribe({
       next: (response: any) => (this.apiResponse = response),
       error: (err: any) => console.error('API Error:', err),
     });

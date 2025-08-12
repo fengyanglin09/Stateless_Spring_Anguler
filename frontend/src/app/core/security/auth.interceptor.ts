@@ -10,13 +10,15 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Intercepting request to:', req.url);
     if (req.url.startsWith('http://localhost:8080/api/')) {
-      const token = this.oauthService.getAccessToken();
-      console.log('Token for request:', token ? token : 'Missing');
-      console.log(this.oauthService.getIdentityClaims())
-      if (token) {
+      let idToken = this.oauthService.getIdToken();
+      const accessToken = this.oauthService.getAccessToken();
+      console.log('Id Token for request:', idToken ? idToken : 'Missing');
+      console.log('Access Token for request:', accessToken ? accessToken : 'Missing');
+      // console.log(this.oauthService.getIdentityClaims())
+      if (accessToken) {
         req = req.clone({
           setHeaders: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         });
         console.log('Added Authorization header:', req.headers.get('Authorization'));
