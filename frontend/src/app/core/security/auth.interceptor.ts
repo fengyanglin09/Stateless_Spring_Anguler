@@ -12,6 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (req.url.startsWith('http://localhost:8080/api/')) {
       const token = this.oauthService.getAccessToken();
       console.log('Token for request:', token ? token : 'Missing');
+      console.log(this.oauthService.getIdentityClaims())
       if (token) {
         req = req.clone({
           setHeaders: {
