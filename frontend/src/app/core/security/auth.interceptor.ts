@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
       const accessToken = this.oauthService.getAccessToken();
       console.log('Id Token for request:', idToken ? idToken : 'Missing');
       console.log('Access Token for request:', accessToken ? accessToken : 'Missing');
-      // console.log(this.oauthService.getIdentityClaims())
+      console.log(this.oauthService.getIdentityClaims())
       if (accessToken) {
         req = req.clone({
           setHeaders: {
