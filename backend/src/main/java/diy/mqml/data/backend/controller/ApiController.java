@@ -1,5 +1,6 @@
 package diy.mqml.data.backend.controller;
 
+import diy.mqml.data.backend.config.security.customizedItems.components.AppSecurityUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -17,7 +18,7 @@ public class ApiController {
     }
 
     @GetMapping("/protected")
-    public ResponseEntity<String> protectedEndpoint(@AuthenticationPrincipal Jwt jwt) {
-        return ResponseEntity.ok("Hello, " + jwt.getClaim("name") + "! This is a protected endpoint.");
+    public ResponseEntity<String> protectedEndpoint(@AuthenticationPrincipal AppSecurityUser user) {
+        return ResponseEntity.ok("Hello, " + user.getFullName() + "! This is a protected endpoint.");
     }
 }
