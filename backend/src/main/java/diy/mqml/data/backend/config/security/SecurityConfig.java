@@ -1,5 +1,6 @@
 package diy.mqml.data.backend.config.security;
 
+import diy.mqml.data.backend.config.security.customizedItems.CustomJwtAuthenticationConverter;
 import diy.mqml.data.backend.config.security.filter.AuthorizationLoggingFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(authorizationLoggingFilter, UsernamePasswordAuthenticationFilter.class)
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(new CustomJwtAuthenticationConverter())));
+
+
         return http.build();
     }
 }
