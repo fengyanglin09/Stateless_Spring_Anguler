@@ -19,6 +19,15 @@ public class ApiController {
 
     @GetMapping("/protected")
     public ResponseEntity<String> protectedEndpoint(@AuthenticationPrincipal AppSecurityUser user) {
+
+
+
+
+
+
         return ResponseEntity.ok("Hello, " + user.getFullName() + "! This is a protected endpoint.");
+
+
+
     }
 }

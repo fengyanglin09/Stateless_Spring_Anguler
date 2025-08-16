@@ -41,7 +41,7 @@ public class CustomJwtAuthenticationConverter implements Converter<Jwt, Abstract
                 .collect(Collectors.toList());
 
         // Return authentication token
-        return new CustomJwtAuthenticationToken(jwt, authorities, user.getLanId(), principal);
+        return new CustomJwtAuthenticationToken(jwt, authorities, user.getId(), principal);
     }
 
 }

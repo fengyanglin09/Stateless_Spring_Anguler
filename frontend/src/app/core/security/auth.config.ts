@@ -8,6 +8,12 @@ const backEndClientId = '6b4f8dcc-e7d3-4d30-ab85-20851dca2013'; // Replace with 
 
 const redirectUri = 'http://localhost:4200'; // Replace with your Angular app's redirect URI
 
+const scopes: string[] = [
+  'openid',
+  'profile',
+  'email',
+  `api://${backEndClientId}/access_as_user`
+]
 export const authCodeFlowConfig: AuthConfig = {
   issuer: `https://login.microsoftonline.com/${tenantId}/v2.0`, // Azure Entra ID issuer
   strictDiscoveryDocumentValidation: false,
@@ -17,7 +23,7 @@ export const authCodeFlowConfig: AuthConfig = {
   clientId: `${frontEndClientId}`, // Your Angular app's client ID
   responseType: 'code',
   // scope: 'openid profile email offline_access api://<spring-boot-client-id>/access_as_user',
-  scope: `openid profile email api://${backEndClientId}/access_as_user` ,
+  scope: scopes.join(' '),
   // scope: `api://c0b121a0-2ae7-4e57-8a7b-53d02feb5788/access_as_user` ,
   showDebugInformation: true,
   silentRefreshRedirectUri: `${redirectUri}/silent-refresh.html`,

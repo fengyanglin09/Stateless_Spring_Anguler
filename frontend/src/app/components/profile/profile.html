@@ -2,6 +2,9 @@
   <h1>Profile</h1>
   <p>User: {{ user?.name }}</p>
   <button (click)="callApi()">Call Protected API</button>
+
+  <button (click)="callGraphApi()">Call Graph API</button>
+
   <p>API Response: {{ apiResponse | json }}</p>
   <button (click)="logout()">Logout</button>
 </div>

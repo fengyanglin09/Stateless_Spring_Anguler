@@ -39,8 +39,13 @@ public class CustomJwtAuthenticationToken extends JwtAuthenticationToken {
 
     }
 
+//    @Override
+//    public Object getPrincipal() {
+//        return user.getUser();
+//    }
+
     @Override
     public Object getPrincipal() {
-        return user.getUser();
+        return this.getToken();
     }
 }
