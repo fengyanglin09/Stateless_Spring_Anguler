@@ -32,7 +32,7 @@ export class Profile implements OnInit {
   }
 
   callGraphApi() {
-    this.http.get('http://localhost:8080/api/call-graph-with-obo', {responseType: 'text'}).subscribe({
+    this.http.get('http://localhost:8080/api/user/login', {responseType: 'text'}).subscribe({
       next: (response: any) => {
         this.apiResponse = response;
         const i = 0;

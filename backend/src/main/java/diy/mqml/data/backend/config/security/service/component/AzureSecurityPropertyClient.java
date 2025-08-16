@@ -1,20 +1,18 @@
-package diy.mqml.data.backend.service;
+package diy.mqml.data.backend.config.security.service.component;
 
 
 import com.azure.spring.cloud.autoconfigure.implementation.aad.configuration.properties.AadAuthenticationProperties;
 import com.azure.spring.cloud.autoconfigure.implementation.aad.configuration.properties.AadCredentialProperties;
 import com.azure.spring.cloud.autoconfigure.implementation.aad.configuration.properties.AadProfileProperties;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Service
-//@Profile("azure-oauth2-authorization-code")
-public class AppWebSecurityAzureService {
+@Component
+public class AzureSecurityPropertyClient {
     private final AadAuthenticationProperties authenticationProperties;
 
-    public AppWebSecurityAzureService(AadAuthenticationProperties authenticationProperties) {
+    public AzureSecurityPropertyClient(AadAuthenticationProperties authenticationProperties) {
         this.authenticationProperties = authenticationProperties;
     }
 
