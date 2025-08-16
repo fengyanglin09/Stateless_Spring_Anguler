@@ -1,13 +1,14 @@
 
-#logging:
-#  level:
-#    org.springframework.security: DEBUG
-#    org.springframework.security.oauth2: DEBUG
+logging:
+  level:
+    org.springframework.security: TRACE
+    org.springframework.security.oauth2: TRACE
+    com.nimbusds: TRACE
+    org.springframework.web.client.RestTemplate: DEBUG
 
 spring:
   application:
     name: "backend"
-
 
   h2:
     console:
@@ -25,25 +26,9 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
-
-
-  #  jpa:
-  #    hibernate:
-  #      ddl-auto: validate
-
-
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
-
-
-
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: https://login.microsoftonline.com/a25fff9c-3f63-4fb2-9a8a-d9bdd0321f9a/v2.0
-#          jwk-set-uri: https://login.microsoftonline.com/a25fff9c-3f63-4fb2-9a8a-d9bdd0321f9a/discovery/v2.0/keys
 
 
   security:
@@ -52,11 +37,23 @@ spring:
         jwt:
           issuer-uri: https://login.microsoftonline.com/a25fff9c-3f63-4fb2-9a8a-d9bdd0321f9a/v2.0
           audiences:
-#            - 00000003-0000-0000-c000-000000000000
             - 6b4f8dcc-e7d3-4d30-ab85-20851dca2013
-logging:
-  level:
-    org.springframework.security: TRACE
-    org.springframework.security.oauth2: TRACE
-    com.nimbusds: TRACE
-    org.springframework.web.client.RestTemplate: DEBUG
+
+  cloud:
+    azure:
+      active-directory:
+        enabled: true
+        profile:
+          tenant-id: a25fff9c-3f63-4fb2-9a8a-d9bdd0321f9a
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        app-id-uri: api://6b4f8dcc-e7d3-4d30-ab85-20851dca2013
+        authorization-clients:
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+              - https://graph.microsoft.com/User.Read.All
+              - https://graph.microsoft.com/profile
+              - https://graph.microsoft.com/Group.Read.All
+

@@ -31,4 +31,13 @@ export class Profile implements OnInit {
     this.oauthService.logOut();
   }
 
+  callGraphApi() {
+    this.http.get('http://localhost:8080/api/call-graph-with-obo', {responseType: 'text'}).subscribe({
+      next: (response: any) => {
+        this.apiResponse = response;
+        const i = 0;
+      },
+      error: (err: any) => console.error('API Error:', err),
+    });
+  }
 }
