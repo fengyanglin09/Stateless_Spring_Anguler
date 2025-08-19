@@ -51,15 +51,11 @@
             <!-- Include the sdk as a dependency -->
             <groupId>com.microsoft.graph</groupId>
             <artifactId>microsoft-graph</artifactId>
-            <!--x-release-please-start-version-->
-            <version>6.50.0</version>
-            <!--x-release-please-end-->
         </dependency>
         <dependency>
             <!-- This dependency is only needed if you are using a TokenCredential object for authentication -->
             <groupId>com.azure</groupId>
             <artifactId>azure-identity</artifactId>
-            <version>1.15.4</version>
         </dependency>
 
         <dependency>
