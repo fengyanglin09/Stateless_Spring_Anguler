@@ -1,0 +1,22 @@
+
+logging:
+  level:
+    ROOT: ERROR
+    diy.mqml: INFO
+    org.springframework.security: DEBUG
+    org.springframework.boot.context.config: DEBUG
+
+spring:
+  application:
+    name: spring-boot-security
+
+
+  liquibase:
+    enabled: false
+
+
+  cloud:
+    azure:
+      active-directory:
+        enabled: false
+

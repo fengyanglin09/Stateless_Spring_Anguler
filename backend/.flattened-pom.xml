@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>mqml.spring.boot</groupId>
 	<artifactId>mqml-spring-boot</artifactId>
-	<version>${revision}</version>
+	<version>1.0.0</version>
 	<name>backend-parent</name>
 	<description>backend-parent</description>
 
