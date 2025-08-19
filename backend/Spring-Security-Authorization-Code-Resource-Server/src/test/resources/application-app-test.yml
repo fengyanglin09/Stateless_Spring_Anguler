@@ -1,0 +1,34 @@
+
+logging:
+  level:
+    ROOT: ERROR
+    diy.mqml: INFO
+    org.springframework.security: DEBUG
+    org.springframework.boot.context.config: DEBUG
+
+spring:
+  application:
+    name: spring-boot-security
+
+
+  liquibase:
+    enabled: false
+
+
+  cloud:
+    azure:
+      active-directory:
+        enabled: true
+        profile:
+          tenant-id: a25fff9c-3f63-4fb2-9a8a-d9bdd0321f9a
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        app-id-uri: api://6b4f8dcc-e7d3-4d30-ab85-20851dca2013
+        authorization-clients:
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+              - https://graph.microsoft.com/User.Read.All
+              - https://graph.microsoft.com/profile
+              - https://graph.microsoft.com/Group.Read.All
