@@ -1,0 +1,16 @@
+<ng-container *ngIf="badgeOverlay; else button">
+  <p-overlayBadge [value]="badgeValue" [severity]="badgeSeverity">
+    <ng-container *ngTemplateOutlet="button"></ng-container>
+  </p-overlayBadge>
+</ng-container>
+<ng-template #button>
+  <p-button [disabled]="disabled" [label]="label" [loading]="loading" [loadingIcon]="loadingIcon"
+            [icon]="icon" [iconPos]="iconPos" styleClass="cad-button-badge {{styleClass}}" [style]="style"
+            [outlined]="outlined" [link]="link" [badge]="!badgeOverlay ? badgeValue : undefined"
+            [badgeSeverity]="badgeSeverity ? badgeSeverity : 'secondary'"
+            [text]="text" [rounded]="rounded" [severity]="severity" [raised]="raised" [size]="size"
+            (onClick)="$event.stopPropagation();click.emit($event)"
+            (onFocus)="$event.stopPropagation();focus.emit($event)"
+            (onBlur)="$event.stopPropagation();blur.emit($event)">
+  </p-button>
+</ng-template>

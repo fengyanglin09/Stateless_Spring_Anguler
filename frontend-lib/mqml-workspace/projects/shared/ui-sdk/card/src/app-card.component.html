@@ -1,0 +1,41 @@
+<p-card [header]="header" [subheader]="subheader" [style]="style" [styleClass]="styleClass">
+
+  <!-- Header Template -->
+  <ng-container *ngIf="headerTemplate">
+    <ng-template pTemplate="header">
+      <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    </ng-template>
+  </ng-container>
+
+  <!-- Title Template -->
+  <ng-container *ngIf="titleTemplate">
+    <ng-template pTemplate="title">
+      <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+    </ng-template>
+  </ng-container>
+
+  <!-- Subtitle Template -->
+  <ng-container *ngIf="subtitleTemplate">
+    <ng-template pTemplate="subtitle">
+      <ng-container *ngTemplateOutlet="subtitleTemplate"></ng-container>
+    </ng-template>
+  </ng-container>
+
+  <!-- Content Template -->
+  <ng-container *ngIf="contentTemplate">
+    <ng-template pTemplate="content">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </ng-template>
+  </ng-container>
+
+  <!-- Footer Template -->
+  <ng-container *ngIf="footerTemplate">
+    <ng-template pTemplate="footer">
+      <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+    </ng-template>
+  </ng-container>
+
+  <!-- Content provided in the component body -->
+  <ng-content></ng-content>
+
+</p-card>
