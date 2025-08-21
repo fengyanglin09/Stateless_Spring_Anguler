@@ -5,6 +5,11 @@
   "projects": {
     "ui-layout": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/shared/ui-layout",
       "sourceRoot": "projects/shared/ui-layout/src",
       "prefix": "lib",
@@ -31,6 +36,11 @@
     },
     "ui-sdk": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/shared/ui-sdk",
       "sourceRoot": "projects/shared/ui-sdk/src",
       "prefix": "lib",

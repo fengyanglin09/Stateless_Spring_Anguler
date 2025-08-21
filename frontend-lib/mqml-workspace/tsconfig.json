@@ -19,7 +19,7 @@
         "./dist/ui-layout"
       ],
       "ui-sdk": [
-        "./dist/ui-sdk"
+        "./dist/ui-sdk/*"
       ]
     }
   },
