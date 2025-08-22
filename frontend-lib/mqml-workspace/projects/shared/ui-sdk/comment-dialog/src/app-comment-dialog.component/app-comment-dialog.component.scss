@@ -1,0 +1,219 @@
+:host ::ng-deep {
+
+  .cad-dialog.cad-comment-dialog:not(.p-dialog-maximized) {
+    box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+    width: 600px !important;
+    max-height: 90vh;
+  }
+
+  .cad-dialog.cad-comment-dialog {
+
+    .cad-comment-dialog-title-badge span {
+      border-radius: 16px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .cad-dialog-content {
+      padding: 0;
+      display: flex !important;
+      flex-direction: column !important;
+
+      .cad-loading-ellipsis {
+        position: absolute;
+        left: 50%;
+        z-index: 1;
+      }
+
+    }
+
+    .cad-comment-list {
+      flex: 1 1 auto;
+      overflow: auto;
+    }
+
+    .cad-comment-dialog-table .p-datatable-table .p-datatable-tbody tr:last-child > td {
+      border-bottom: 0;
+    }
+
+    .cad-comment-dialog-table tr.empty-message td {
+      padding-top: 20px;
+      border: 0;
+    }
+
+    .cad-comment-item {
+      display: flex;
+    }
+
+    .cad-comment-dialog-loading-skeleton {
+
+      .cad-comment-item {
+        padding: 0.75rem 0.75rem;
+      }
+
+      .cad-comment-item:not(:last-child) {
+        border-bottom: 1px solid #e4e4e4;
+      }
+
+    }
+
+    .cad-comment-item-right {
+      flex: 1 1 auto;
+    }
+
+    .cad-comment-item .cad-editor {
+      padding: 2px 8px;
+    }
+
+    .cad-comment-item-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-right: 10px;
+    }
+
+    //.user-picture.p-avatar.p-component.p-avatar-image img {
+    //  width: 50px;
+    //  height: 50px;
+    //  margin-top: 8px;
+    //}
+
+    .cad-comment-item-info {
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      line-height: 21px;
+      margin-bottom: 5px;
+
+      .cad-comment-options .cad-comment-menu-button {
+        height: 2.2rem !important;
+        width: 2.2rem !important;
+        color: rgba(0, 0, 0, 0.3);
+      }
+
+    }
+
+
+    .cad-comment-item-info-user {
+
+      display: flex;
+      align-items: center;
+      color: #294d7f;
+      font-weight: bold;
+
+      .cad-dot-separator {
+        color: rgba(0, 0, 0, 0.42) !important;
+      }
+
+      .cad-comment-edited-label {
+        color: #294d7f;
+      }
+
+    }
+
+    .cad-comment-item-info-user small,
+    .cad-comment-item-state-info small {
+      color: #777777;
+      font-weight: normal;
+    }
+
+    .cad-comment-item-state-info {
+
+      flex-direction: column;
+      align-items: flex-end;
+
+      small {
+        font-style: italic;
+      }
+
+    }
+
+
+    .cad-tag-icon-only .p-tag-icon {
+      margin-right: auto;
+    }
+
+    .cad-comment-item.cad-comment-deleted .cad-comment-item-body,
+    .cad-comment-item.cad-comment-draft .cad-comment-item-body {
+      padding: 10px;
+      border-radius: 5px;
+      background-color: var(--gray-100);
+    }
+
+    .cad-comment-item.cad-comment-deleted {
+
+      .cad-comment-item-content {
+        text-decoration: line-through;
+      }
+
+      .cad-comment-item-body {
+        border-left: 3px solid var(--red-100);
+      }
+
+      .cad-comment-item-state-info small {
+        color: var(--red-600);
+      }
+
+    }
+
+    .cad-comment-item.cad-comment-draft {
+
+      .cad-comment-item-body {
+        border-left: 3px solid #294d7f;
+      }
+
+      .cad-comment-item-state-info small {
+        color: #294d7f;
+      }
+    }
+
+    .cad-comment-item-content {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .cad-comment-item-content a {
+      text-decoration: underline;
+    }
+
+    .cad-comment-item-content table {
+      table-layout: auto;
+      min-width: auto;
+    }
+
+    .cad-comment-tags cad-tag:not(:first-child) {
+      margin-right: 2px;
+    }
+
+
+    .disabled {
+      opacity: 0.38;
+    }
+
+    .read-only .p-datatable .p-datatable-tbody > tr:last-child > td {
+      border: none;
+    }
+
+    .cad-comment-dialog-editor-container {
+      padding-bottom: 5px;
+    }
+
+    .cad-editor {
+      height: 150px;
+      width: 100%;
+    }
+
+    .cad-comment-dialog-scroll-top {
+      right: 5px;
+      bottom: 5px;
+    }
+
+    .cad-dialog-footer {
+      width: 100%;
+      display: block;
+    }
+
+  }
+}
