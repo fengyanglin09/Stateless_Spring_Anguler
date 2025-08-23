@@ -1,0 +1,66 @@
+<p-dialog #dialog
+          [appendTo]="appendTo"
+          [closable]="closeable"
+          [closeIcon]="headerCloseIcon"
+          [closeOnEscape]="closeOnEscape"
+          [contentStyleClass]=""
+          [dismissableMask]="dismissableMask"
+          [draggable]="draggable"
+          [focusOnShow]="focusOnShow"
+          [maximizable]="maximizable"
+          [maximizeIcon]="'fa-solid fa-window-maximize'"
+          [minimizeIcon]="'fa-solid fa-window-restore'"
+          [modal]="modal"
+          [ngClass]="{'undraggable':!draggable}"
+          (onHide)="hide()"
+          [position]="position"
+          [resizable]="resizable"
+          [showHeader]="showHeader"
+          [styleClass]="_styleClass"
+          [style]="style"
+          [(visible)]="visible">
+  <ng-template pTemplate="header">
+    <div class="app-dialog-header content-center">
+      <div class="app-dialog-title content-center items-center" *ngIf="!headerTemplate">
+        {{ title }}
+        <p-badge *ngIf="titleBadge" styleClass="app-dialog-title-badge content-center ml-1"
+                 [value]="titleBadge" [severity]="titleBadgeSeverity"/>
+      </div>
+      <ng-container *ngIf="headerTemplate">
+        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+      </ng-container>
+      <div class="app-dialog-header-icons">
+        <p-button *ngIf="maximizable"
+                  (click)="toggleMaximize()" [rounded]="true" [text]="true"/>
+        <p-button *ngIf="closeable" [disabled]="processing"
+                  (click)="hide()" [rounded]="true" [text]="true"/>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="app-dialog-progress app-dialog-progress-top">
+      <p-divider *ngIf="!loading" class="app-dialog-divider"></p-divider>
+      <p-progressBar *ngIf="loading" mode="indeterminate"></p-progressBar>
+    </div>
+    <div class="app-dialog-content">
+      <ng-content></ng-content>
+      <ng-container *ngIf="contentTemplate">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+      </ng-container>
+      <div [ngClass]="{'app-dialog-overlay': true, 'blocked': (loading || processing)}"></div>
+    </div>
+    <div class="app-dialog-progress">
+      <p-divider *ngIf="!processing && (footerClose || footerTemplate)" class="app-dialog-divider"></p-divider>
+      <p-progressBar *ngIf="processing" mode="indeterminate"></p-progressBar>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="app-dialog-footer">
+      <ng-container *ngIf="footerTemplate">
+        <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+      </ng-container>
+      <p-button *ngIf="footerClose" [text]="true" (click)="hide()" [disabled]="processing"
+                [icon]="closeIcon" [label]="footerCloseLabel" [severity]="footerCloseSeverity"/>
+    </div>
+  </ng-template>
+</p-dialog>
