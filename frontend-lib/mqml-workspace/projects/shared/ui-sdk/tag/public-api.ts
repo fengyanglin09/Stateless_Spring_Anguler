@@ -1,1 +1,1 @@
-export * from './src/add-tag.component/add-tag.component'
+export * from './src/app-tag.component/app-tag.component'

@@ -6,7 +6,7 @@ import {AppStyle, AppTagSeverity} from 'mqml-angular-ui-sdk/api';
 import {Tooltip} from 'primeng/tooltip';
 
 @Component({
-  selector: 'lib-add-tag',
+  selector: 'lib-app-tag',
   imports: [
     Tag,
     NgIf,
@@ -14,10 +14,10 @@ import {Tooltip} from 'primeng/tooltip';
     NgClass,
     Tooltip
   ],
-  templateUrl: './add-tag.component.html',
-  styleUrl: './add-tag.component.scss'
+  templateUrl: './app-tag.component.html',
+  styleUrl: './app-tag.component.scss'
 })
-export class AddTagComponent implements OnChanges{
+export class AppTagComponent implements OnChanges{
 
   @Input() value: string | undefined;
   @Input() severity: AppTagSeverity;
