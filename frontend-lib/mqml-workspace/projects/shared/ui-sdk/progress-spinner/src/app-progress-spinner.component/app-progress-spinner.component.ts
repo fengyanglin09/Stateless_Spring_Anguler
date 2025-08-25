@@ -3,7 +3,7 @@ import {ProgressSpinner} from 'primeng/progressspinner';
 import {AppStyle} from 'mqml-angular-ui-sdk/api';
 
 @Component({
-  selector: 'lib-app-progress-spinner.component',
+  selector: 'lib-app-progress-spinner',
   imports: [
     ProgressSpinner
   ],

@@ -3,7 +3,7 @@ import {NgClass, NgStyle} from '@angular/common';
 import {AppStyle} from 'mqml-angular-ui-sdk/api';
 
 @Component({
-  selector: 'lib-app-progress-ellipsis.component',
+  selector: 'lib-app-progress-ellipsis',
   imports: [
     NgStyle,
     NgClass
