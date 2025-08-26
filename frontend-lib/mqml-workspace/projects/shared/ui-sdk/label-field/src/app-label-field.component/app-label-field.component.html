@@ -1,0 +1,49 @@
+<div class="app-label-field" [ngClass]="styleClass">
+  <div class="app-label-field-header">
+    <span class="label">{{ label }}</span>
+    <div class="app-label-field-toolbar">
+      <ng-container *ngIf="!toolbarTemplate">
+        <i *ngIf="!loading && infoTooltip" class="app-label-field-info text-blue-600 cursor-pointer"
+           [ngClass]="infoIcon" [pTooltip]="infoTooltip" [autoHide]="infoTooltipAutoHide"
+           [escape]="infoTooltipEscape" [tooltipStyleClass]="infoTooltipStyleClass"></i>
+        <div class="app-label-field-tags">
+          <ng-container *ngFor="let tag of tags; let i = index">
+            <lib-app-tag *ngIf="!loading && tag"
+                     [value]="tag.value"
+                     [rounded]="tag.rounded || false"
+                     [icon]="tag.icon"
+                     styleClass="cursor-pointer"
+                     (click)="tag.click && tag.click($event)"
+                     [severity]="tag.severity"
+                     [pTooltip]="tag.tooltip"
+                     [tooltipPosition]="tag.tooltipPosition || 'right'"
+                     [tooltipStyleClass]="tag.tooltipStyleClass"
+                     [appendTo]="tooltipAppendTo || 'body'"
+                     [escape]="tag.tooltipEscape"></lib-app-tag>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="toolbarTemplate">
+        <ng-container *ngTemplateOutlet="toolbarTemplate"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div #contentContainer *ngIf="!loading;else contentSkeleton" [ngClass]="valueStyleClass"
+       class="app-label-field-value mt-1 {{valueStyleClass}} mt-1"
+       [pTooltip]="tooltip" [tooltipPosition]="tooltipPosition" [appendTo]="tooltipAppendTo">
+    <lib-app-content-overflow-ellipsis #contentOverflowEllipsis *ngIf="overflowEllipsis && !ngContentTemplate.childElementCount"
+                                   [value]="value" (onCopySuccess)="handleCopySuccess($event)" (onCopyError)="handleCopyError($event)">
+    </lib-app-content-overflow-ellipsis>
+    <span *ngIf="!overflowEllipsis && value && !ngContentTemplate.childElementCount" [innerHTML]="value | appSafeHtml"></span>
+    <div class="app-label-field-value-content" #ngContentTemplate>
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+</div>
+<ng-template #contentSkeleton>
+  <div *ngIf="loading" [ngClass]="valueStyleClass" class="field-value {{valueStyleClass}} mt-1">
+    <p-skeleton></p-skeleton>
+  </div>
+</ng-template>

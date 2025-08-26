@@ -17,7 +17,7 @@ import {Divider} from 'primeng/divider';
 import {AppButtonComponent} from 'mqml-angular-ui-sdk/button';
 
 @Component({
-  selector: 'lib-app-content-overflow-ellipsis.component',
+  selector: 'lib-app-content-overflow-ellipsis',
   imports: [
     NgStyle,
     Tooltip,
