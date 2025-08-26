@@ -1,1 +1,49 @@
-<p>app-comment-dialog.component works!</p>
+<lib-add-dialog #dialog
+            [closeable]="closeable"
+            [closeOnEscape]="closeOnEscape"
+            [focusOnShow]="focusOnShow"
+            [title]="title"
+            [titleBadge]="_titleBadge"
+            [titleBadgeSeverity]="titleBadgeSeverity"
+            [maximizable]="maximizable"
+            [modal]="modal"
+            [loading]="loading"
+            [processing]="processing"
+            [style]="style"
+            styleClass="cad-comment-dialog {{styleClass}}"
+            [(visible)]="visible">
+
+  <ng-template pTemplate="content">
+    <cad-comment-list [value]="_value" [menuProvider]="menuProvider" [readOnly]="readOnly" [loading]="loading"
+                      styleClass="cad-dialog-comment-list" [emptyMessage]="emptyMessage"
+                      [deletedTagLabel]="deletedTagLabel" [deletedTagSeverity]="deletedTagSeverity"
+                      [draftTagLabel]="draftTagLabel" [draftTagSeverity]="draftTagSeverity"
+                      [scrollTopEnabled]="scrollTopEnabled" [scrollTopThreshold]="scrollTopThreshold"
+                      [skeletonEntries]="skeletonEntries"/>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="cad-comment-dialog-editor-container" *ngIf="!readOnly" [ngClass]="{'disabled': processing}">
+      <cad-editor [readOnly]="(processing || loading)" styleClass="cad-comment-dialog-editor"
+                  toolbarLocation="bottom" menubar="false"
+                  [placeholder]="inputPlaceholder" [(value)]="inputModel.value"></cad-editor>
+    </div>
+    <ng-container *ngIf="!readOnly">
+      <p-button *ngIf="!draftEnabled; else defaultButton" [text]="true" (click)="save()"
+                [disabled]="(!inputModel.value?.length || processing || loading)"
+                [label]="saveButtonLabel" [icon]="saveButtonIcon" [severity]="saveButtonSeverity"/>
+    </ng-container>
+  </ng-template>
+</lib-add-dialog>
+
+<p-menu #commentMenu [popup]="true" [model]="commentMenuItems" appendTo="body" styleClass="cad-dropdown-menu"></p-menu>
+
+<ng-template #defaultButton>
+  <p-button [text]="true" (click)="save(false)" [disabled]="(!inputModel.value?.length || processing || loading)"
+            [label]="draftButtonLabel" [icon]="draftButtonIcon" [severity]="draftButtonSeverity"/>
+  <p-button *ngIf="inputModel.id && !inputModel.published" [text]="true" (click)="delete()"
+            [disabled]="(!inputModel.value?.length || processing || loading)"
+            [label]="discardDraftButtonLabel" [icon]="discardDraftButtonIcon"
+            [severity]="discardDraftButtonSeverity"/>
+  <p-button [text]="true" (click)="save()" [disabled]="(!inputModel.value?.length || processing || loading)"
+            [label]="publishButtonLabel" [icon]="publishButtonIcon" [severity]="publishButtonSeverity"/>
+</ng-template>

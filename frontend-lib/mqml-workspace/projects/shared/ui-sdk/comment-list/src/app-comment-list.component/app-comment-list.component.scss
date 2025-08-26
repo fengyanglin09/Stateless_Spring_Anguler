@@ -1,0 +1,203 @@
+:host ::ng-deep  .app-comment-list {
+  .app-comment-list-title-badge span {
+    border-radius: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .app-list-content {
+    padding: 0;
+    display: flex !important;
+    flex-direction: column !important;
+
+    .app-loading-ellipsis {
+      position: absolute;
+      left: 50%;
+      z-index: 1;
+    }
+
+  }
+
+  .app-comment-list {
+    flex: 1 1 auto;
+    overflow: auto;
+  }
+
+  .app-comment-list-table .p-datatable-table .p-datatable-tbody tr:last-child > td {
+    border-bottom: 0;
+  }
+
+  .app-comment-list-table tr.empty-message td {
+    padding-top: 20px;
+    border: 0;
+  }
+
+  .app-comment-item {
+    display: flex;
+  }
+
+  .app-comment-list-loading-skeleton {
+
+    .app-comment-item {
+      padding: 0.75rem 0.75rem;
+    }
+
+    .app-comment-item:not(:last-child) {
+      border-bottom: 1px solid #e4e4e4;
+    }
+
+  }
+
+  .app-comment-item-right {
+    flex: 1 1 auto;
+  }
+
+  .app-comment-item .app-editor {
+    padding: 2px 8px;
+  }
+
+  .app-comment-item-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+
+  .user-picture.p-avatar.p-component.p-avatar-image img {
+    //width: 50px;
+    //height: 50px;
+    //margin-top: 8px;
+  }
+
+  .app-comment-item-info {
+
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    font-size: 16px;
+    line-height: 21px;
+    margin-bottom: 5px;
+
+    .app-comment-options .app-comment-menu-button {
+      height: 2.2rem !important;
+      width: 2.2rem !important;
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+  }
+
+
+  .app-comment-item-info-user {
+
+    display: flex;
+    align-items:center;
+    color: #294d7f;
+    font-weight: bold;
+
+    .app-dot-separator {
+      color: rgba(0, 0, 0, 0.42) !important;
+    }
+
+    .app-comment-edited-label {
+      color: #294d7f;
+    }
+
+  }
+
+  .app-comment-item-info-user small,
+  .app-comment-item-state-info small{
+    color: #777777;
+    font-weight: normal;
+  }
+
+  .app-comment-item-state-info  {
+
+    flex-direction: column;
+    align-items: flex-end;
+
+    small {
+      font-style: italic;
+    }
+
+  }
+
+
+  .app-tag-icon-only .p-tag-icon {
+    margin-right: auto;
+  }
+
+  .app-comment-item.app-comment-deleted .app-comment-item-body,
+  .app-comment-item.app-comment-draft .app-comment-item-body{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--gray-100);
+  }
+
+  .app-comment-item.app-comment-deleted {
+
+    .app-comment-item-content {
+      text-decoration: line-through;
+    }
+
+    .app-comment-item-body {
+      border-left: 3px solid var(--red-100);
+    }
+
+    .app-comment-item-state-info small {
+      color: var(--red-600);
+    }
+
+  }
+
+  .app-comment-item.app-comment-draft {
+
+    .app-comment-item-body {
+      border-left: 3px solid #294d7f;
+    }
+
+    .app-comment-item-state-info small {
+      color: #294d7f;
+    }
+  }
+
+  .app-comment-item-content {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .app-comment-item-content a {
+    text-decoration: underline;
+  }
+
+  .app-comment-item-content table {
+    table-layout: auto;
+    min-width: auto;
+  }
+
+  .app-comment-tags app-tag:not(:first-child) {
+    margin-right: 2px;
+  }
+
+
+  .disabled {
+    opacity: 0.38;
+  }
+
+  .read-only .p-datatable .p-datatable-tbody > tr:last-child > td {
+    border: none;
+  }
+
+  .app-comment-list-editor-container {
+    padding-bottom: 5px;
+  }
+
+  .app-editor {
+    height: 150px;
+  }
+
+  .app-comment-list-scroll-top {
+    right: 5px;
+    bottom: 5px;
+  }
+
+}

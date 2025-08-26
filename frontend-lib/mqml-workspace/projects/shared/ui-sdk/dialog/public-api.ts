@@ -1,1 +1,1 @@
-export * from './src/add-dialog.component/add-dialog.component';
+export * from './src/app-dialog.component/app-dialog.component';

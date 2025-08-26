@@ -32,10 +32,10 @@ import {ProgressBar} from 'primeng/progressbar';
     Divider,
     ProgressBar
   ],
-  templateUrl: './add-dialog.component.html',
-  styleUrl: './add-dialog.component.scss'
+  templateUrl: './app-dialog.component.html',
+  styleUrl: './app-dialog.component.scss'
 })
-export class AddDialogComponent implements OnChanges, AfterViewInit {
+export class AppDialogComponent implements OnChanges, AfterViewInit {
 
   @Input() appendTo: HTMLElement | ElementRef | TemplateRef<any> | string | null | undefined | any;
   @Input() closeable: boolean = false;
