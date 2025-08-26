@@ -33,6 +33,7 @@ import {ProgressBar} from 'primeng/progressbar';
     ProgressBar
   ],
   templateUrl: './app-dialog.component.html',
+  standalone: true,
   styleUrl: './app-dialog.component.scss'
 })
 export class AppDialogComponent implements OnChanges, AfterViewInit {

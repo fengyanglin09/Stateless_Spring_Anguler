@@ -27,6 +27,7 @@ import {ScrollTop} from 'primeng/scrolltop';
     Menu
   ],
   templateUrl: './app-comment-list.component.html',
+  standalone: true,
   styleUrl: './app-comment-list.component.scss'
 })
 export class AppCommentListComponent implements OnChanges {

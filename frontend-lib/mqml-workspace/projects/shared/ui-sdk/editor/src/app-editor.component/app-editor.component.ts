@@ -29,9 +29,11 @@ import {NgClass, NgForOf, NgIf} from '@angular/common';
     EditorComponent,
     AppSafeHtmlPipe,
     FormsModule,
-    NgForOf
+    NgForOf,
+    AppSafeHtmlPipe
   ],
   templateUrl: './app-editor.component.html',
+  standalone: true,
   styleUrl: './app-editor.component.scss'
 })
 export class AppEditorComponent implements OnChanges, ControlValueAccessor, OnInit, AfterViewInit {

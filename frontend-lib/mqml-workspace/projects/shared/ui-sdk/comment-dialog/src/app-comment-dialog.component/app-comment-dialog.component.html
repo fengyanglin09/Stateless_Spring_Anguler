@@ -23,9 +23,9 @@
   </ng-template>
   <ng-template pTemplate="footer">
     <div class="cad-comment-dialog-editor-container" *ngIf="!readOnly" [ngClass]="{'disabled': processing}">
-      <cad-editor [readOnly]="(processing || loading)" styleClass="cad-comment-dialog-editor"
+      <lib-app-editor [readOnly]="(processing || loading)" styleClass="cad-comment-dialog-editor"
                   toolbarLocation="bottom" menubar="false"
-                  [placeholder]="inputPlaceholder" [(value)]="inputModel.value"></cad-editor>
+                  [placeholder]="inputPlaceholder" [(value)]="inputModel.value"></lib-app-editor>
     </div>
     <ng-container *ngIf="!readOnly">
       <p-button *ngIf="!draftEnabled; else defaultButton" [text]="true" (click)="save()"

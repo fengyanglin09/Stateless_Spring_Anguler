@@ -1,18 +1,19 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {MenuItem, PrimeTemplate} from 'primeng/api';
-import {AppBadgeSeverity, AppComment, AppStyle, AppTagSeverity} from '../../../api';
+import {AppBadgeSeverity, AppComment, AppStyle, AppTagSeverity} from 'mqml-angular-ui-sdk/api';
 import {Menu} from 'primeng/menu';
-import {AppButtonSeverity} from '../../../button';
+import {AppButtonSeverity} from 'mqml-angular-ui-sdk/button';
 import {ControlValueAccessor} from '@angular/forms';
 import {
   AppCommentDialogDeleteEvent,
   AppCommentDialogInputModel,
   AppCommentDialogSaveEvent
 } from '../model/app-comment-dialog.interface';
-import {AppDialogComponent} from '../../../dialog';
 import {Button} from 'primeng/button';
-import {AppCommentListComponent} from '../../../comment-list';
-import {NgIf} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
+import {AppEditorComponent} from 'mqml-angular-ui-sdk/editor';
+import {AppCommentListComponent} from 'mqml-angular-ui-sdk/comment-list';
+import {AppDialogComponent} from 'mqml-angular-ui-sdk/dialog';
 
 @Component({
   selector: 'lib-app-comment-dialog',
@@ -22,9 +23,14 @@ import {NgIf} from '@angular/common';
     Button,
     AppCommentListComponent,
     NgIf,
-    PrimeTemplate
+    PrimeTemplate,
+    NgClass,
+    AppEditorComponent,
+    AppCommentListComponent,
+    AppDialogComponent
   ],
   templateUrl: './app-comment-dialog.component.html',
+  standalone: true,
   styleUrl: './app-comment-dialog.component.scss'
 })
 export class AppCommentDialogComponent implements OnChanges, ControlValueAccessor  {
