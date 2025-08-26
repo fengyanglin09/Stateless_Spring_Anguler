@@ -1,0 +1,38 @@
+<div class="app-editor" [style]="style" [class]="styleClass">
+  <ng-container *ngIf="previewEnabled">
+    <p-tag *ngIf="previewLabel" [value]="previewLabel" styleClass="app-editor-preview-label"/>
+    <div class="app-editor-preview mce-content-body"
+         [ngClass]="{'unready': readOnly, 'app-editor-template': !value}"
+         (click)="enableEditMode()" [innerHTML]="(value) ? (value | appSafeHtml) : (template ? (template | appSafeHtml) : '')"></div>
+    <input type="hidden" [(ngModel)]="value">
+  </ng-container>
+  <editor #editor
+          *ngIf="!previewEnabled"
+          [style.height]="'100%'"
+          [init]="settings"
+          (ngModelChange)="_handleOnChangeValue($event)"
+          (onBlur)="_handleOnBlur($event.event)"
+          (onKeyDown)="_handleOnKeyDown($event.event)"
+          (onKeyUp)="_handleOnKeyUp($event.event)"
+          (onKeyPress)="_handleOnKeyPress($event.event)"
+          [(ngModel)]="value">
+  </editor>
+  <div   *ngIf="mentionPopupVisible"
+         class="mention-popup"
+         [style.left.px]="popupX"
+         [style.top.px]="popupY">
+    <ng-container *ngIf="!mentionLoading">
+      <div *ngFor="let user of _mentionUsers"
+           (click)="insertMention(user, $event)"
+           class="mention-item">
+        <span><img [src]="user.photoUrl" class="avatar" alt="avatar" />{{ user.fullName }}</span>
+      </div>
+    </ng-container>
+    <div class="mention-item justify-center" *ngIf="mentionLoading">
+      <i class="pi pi-spin pi-spinner"></i>
+    </div>
+    <div class="mention-item justify-center" *ngIf="!mentionLoading && !_mentionUsers.length">
+      <span>No results found</span>
+    </div>
+  </div>
+</div>
