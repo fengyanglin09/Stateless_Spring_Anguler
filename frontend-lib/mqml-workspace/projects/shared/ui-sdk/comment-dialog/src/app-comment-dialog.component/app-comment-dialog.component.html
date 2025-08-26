@@ -1,4 +1,4 @@
-<lib-add-dialog #dialog
+<lib-app-dialog #dialog
             [closeable]="closeable"
             [closeOnEscape]="closeOnEscape"
             [focusOnShow]="focusOnShow"
@@ -14,7 +14,7 @@
             [(visible)]="visible">
 
   <ng-template pTemplate="content">
-    <cad-comment-list [value]="_value" [menuProvider]="menuProvider" [readOnly]="readOnly" [loading]="loading"
+    <lib-app-comment-list [value]="_value" [menuProvider]="menuProvider" [readOnly]="readOnly" [loading]="loading"
                       styleClass="cad-dialog-comment-list" [emptyMessage]="emptyMessage"
                       [deletedTagLabel]="deletedTagLabel" [deletedTagSeverity]="deletedTagSeverity"
                       [draftTagLabel]="draftTagLabel" [draftTagSeverity]="draftTagSeverity"
@@ -33,7 +33,7 @@
                 [label]="saveButtonLabel" [icon]="saveButtonIcon" [severity]="saveButtonSeverity"/>
     </ng-container>
   </ng-template>
-</lib-add-dialog>
+</lib-app-dialog>
 
 <p-menu #commentMenu [popup]="true" [model]="commentMenuItems" appendTo="body" styleClass="cad-dropdown-menu"></p-menu>
 

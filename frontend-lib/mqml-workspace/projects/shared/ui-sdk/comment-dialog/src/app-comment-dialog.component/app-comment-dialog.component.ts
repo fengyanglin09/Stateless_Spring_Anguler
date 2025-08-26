@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {MenuItem} from 'primeng/api';
+import {MenuItem, PrimeTemplate} from 'primeng/api';
 import {AppBadgeSeverity, AppComment, AppStyle, AppTagSeverity} from '../../../api';
 import {Menu} from 'primeng/menu';
 import {AppButtonSeverity} from '../../../button';
@@ -11,13 +11,18 @@ import {
 } from '../model/app-comment-dialog.interface';
 import {AppDialogComponent} from '../../../dialog';
 import {Button} from 'primeng/button';
+import {AppCommentListComponent} from '../../../comment-list';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'lib-app-comment-dialog',
   imports: [
     AppDialogComponent,
     Menu,
-    Button
+    Button,
+    AppCommentListComponent,
+    NgIf,
+    PrimeTemplate
   ],
   templateUrl: './app-comment-dialog.component.html',
   styleUrl: './app-comment-dialog.component.scss'

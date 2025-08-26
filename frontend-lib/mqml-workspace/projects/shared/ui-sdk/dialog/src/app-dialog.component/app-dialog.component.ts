@@ -20,7 +20,7 @@ import {Divider} from 'primeng/divider';
 import {ProgressBar} from 'primeng/progressbar';
 
 @Component({
-  selector: 'lib-add-dialog',
+  selector: 'lib-app-dialog',
   imports: [
     Dialog,
     Badge,
