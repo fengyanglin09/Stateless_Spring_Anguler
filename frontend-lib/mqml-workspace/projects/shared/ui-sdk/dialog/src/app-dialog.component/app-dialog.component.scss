@@ -1,0 +1,140 @@
+::ng-deep .cad-dialog {
+
+  /**
+  Cad Dialog styles
+   */
+
+  .app-dialog-header {
+
+    display: flex;
+    flex: 1 1 auto;
+
+
+    .cad-dialog-title {
+      display: flex;
+      flex: 1 1 auto;
+      font-weight: 600;
+      font-size: 1.25rem;
+
+      p-badge {
+        align-content: center !important;
+      }
+
+    }
+
+    .app-dialog-header-icons {
+      flex-grow: 0;
+      flex-direction: row-reverse;
+
+      .cad-icon {
+        height: 2.2rem !important;
+        width: 2.2rem !important;
+        color: rgba(0, 0, 0, 0.3);
+      }
+
+      .cad-icon .p-button-icon {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .cad-icon:hover:enabled{
+        background: rgba(0, 0, 0, 0.04);
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+
+  .app-dialog-divider.p-divider.p-divider-horizontal {
+    margin: 0 0 1px !important;
+  }
+
+  .app-dialog-progress {
+    height: 4px;
+  }
+
+  .app-dialog-progress-top {
+    margin-bottom: 2px;
+  }
+
+  .app-dialog-progress .p-progressbar {
+    height: 2px;
+  }
+
+  .app-dialog-content {
+    padding-bottom: 10.5px;
+    padding-top: 10.5px;
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    margin-top: -2px;
+  }
+
+  .app-dialog-overlay {
+    position: absolute;
+    top: 1px;
+    left: 0px;
+    right: 0px;
+    bottom: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1101;
+    overflow: hidden;
+  }
+
+  .app-dialog-overlay.blocked {
+    display: flex;
+  }
+
+  .p-dialog-footer .p-button-text {
+    height: 2.2rem !important;
+  }
+
+  /**
+  Override PrimeNg default styles
+   */
+  .undraggable .p-dialog-header {
+    cursor: default;
+  }
+
+  .p-dialog-header {
+    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+
+    .p-dialog-header-icons {
+      display: none;
+    }
+
+    .p-dialog-header-icon {
+      min-width: unset;
+    }
+
+  }
+
+  .p-dialog-footer {
+    padding-bottom: 10px !important;
+    padding-top: 6px !important;
+    text-align: end;
+
+    .app-dialog-footer {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+    }
+
+  }
+
+  .p-dialog-content {
+    padding-bottom: 0 !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .app-dialog-footer {
+    width: 100% !important;
+  }
+
+}
+

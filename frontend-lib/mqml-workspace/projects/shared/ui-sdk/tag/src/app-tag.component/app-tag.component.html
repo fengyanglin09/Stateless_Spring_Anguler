@@ -1,0 +1,16 @@
+<p-tag [value]="value"
+       [severity]="severity"
+       [rounded]="rounded"
+       [style]="style"
+       [styleClass]="_styleClass"
+       [pTooltip]="tooltip"
+       [tooltipPosition]="tooltipPosition || 'right'"
+       [tooltipStyleClass]="tooltipStyleClass"
+       [escape]="tooltipEscape || true"
+       [appendTo]="tooltipAppendTo || 'body'">
+  <ng-container *ngIf="icon">
+    <ng-template pTemplate="icon">
+      <i class="p-tag-icon" [ngClass]="icon"></i>
+    </ng-template>
+  </ng-container>
+</p-tag>

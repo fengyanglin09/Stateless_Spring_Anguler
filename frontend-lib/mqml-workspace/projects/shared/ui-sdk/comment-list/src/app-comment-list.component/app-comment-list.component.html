@@ -1,0 +1,84 @@
+<div #commentList class="app-comment-list {{styleClass}}" [style]="style"
+     [ngClass]="{ 'disabled':(processing || loading), 'read-only': readOnly }">
+  <div *ngIf="loading && !value?.length" class="app-comment-list-table app-comment-list-loading-skeleton">
+    <div class="app-comment-item" *ngFor="let f of [].constructor(skeletonEntries)">
+      <div class="app-comment-item-left">
+        <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+      </div>
+      <div class="app-comment-item-right">
+        <div class="app-comment-item-content">
+          <p-skeleton height="4rem" styleClass="mb-2"></p-skeleton>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-table [value]="_value" styleClass="app-comment-list-table">
+    <ng-template pTemplate="body" let-comment let-index="rowIndex">
+      <tr>
+        <td>
+          <div class="app-comment-item" [ngClass]="{'app-comment-deleted': comment.deletedOn, 'app-comment-edited': comment.editedOn, 'app-comment-draft': !comment.publishedOn}">
+            <div class="app-comment-item-left">
+              <p-avatar [image]="comment.user.photoUrl" shape="circle" size="large"
+                        styleClass="user-picture"></p-avatar>
+            </div>
+            <div class="app-comment-item-right">
+              <div class="app-comment-item-info">
+                                        <span class="app-comment-item-info-user">{{ comment.user.fullName }}
+                                          <small class="ml-1" *ngIf="comment.publishedOn">on&nbsp;{{ comment.editedOn || comment.publishedOn || comment.createdOn | date:'medium' }}</small>
+                                            <ng-container *ngIf="comment.editedOn">
+                                                <small class="app-dot-separator ml-1">•</small>
+                                                <small class="app-comment-edited-label ml-1">Edited</small>
+                                            </ng-container>
+
+                                        </span>
+                <span class="app-comment-options flex flex-row-reverse">
+                                            <ng-container *ngIf="comment.menuEnabled && menuProvider && menuProvider.length>0 && !readOnly">
+                                                <span class="app-comment-menu">
+                                                    <p-button styleClass="app-comment-menu-button" (click)="toggleMenu($event, comment, index)"
+                                                              [loading]="comment.loading" [disabled]="processing"
+                                                              [icon]="menuIcon" [rounded]="true" [text]="true" [severity]="'secondary'"></p-button>
+                                                </span>
+                                            </ng-container>
+                                        </span>
+              </div>
+              <div class="app-comment-item-body">
+                <p class="app-comment-item-content" [ngClass]="comment.valueStyleClass" [innerHTML]="comment.value | appSafeHtml"></p>
+                <span class="app-comment-item-state-info flex justify-content-end">
+                                            <small *ngIf="comment.deletedOn">
+                                                {{deletedTagLabel}} on&nbsp;{{ comment.deletedOn | date:'medium' }}
+                                            </small>
+                                            <small *ngIf="!comment.publishedOn">
+                                                {{draftTagLabel}} on&nbsp;{{ comment.createdOn | date:'medium' }}
+                                            </small>
+                                        </span>
+              </div>
+              <div class="app-comment-item-footer flex justify-content-end align-items-center">
+                                        <span class="app-comment-tags flex flex-row-reverse align-items-center mt-2">
+                                            <ng-container *ngFor="let tag of comment.tags">
+                                                <lib-app-tag [icon]="tag.icon" [value]="tag.value" [severity]="tag.severity" [rounded]="tag.rounded"
+                                                         [tooltip]="tag.tooltip" [tooltipStyleClass]="tag.tooltipStyleClass" [tooltipPosition]="tag.tooltipPosition"
+                                                         [tooltipEscape]="tag.tooltipEscape" [tooltipAppendTo]="tag.tooltipAppendTo" />
+                                            </ng-container>
+                                        </span>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr class="empty-message">
+        <td style="text-align: center">
+          <div class="flex flex-column gap-2 items-center" *ngIf="!loading">
+            <i class="fa-solid fa-message fa-2xl text-primary mt-1 pb-3"></i>
+            <span>{{ emptyMessage }}</span>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-scrollTop *ngIf="scrollTopEnabled" styleClass="app-comment-list-scroll-top" target="parent"
+               [threshold]="scrollTopThreshold"/>
+</div>
+
+<p-menu #commentMenu [popup]="true" [model]="commentMenuItems" appendTo="body" styleClass="app-dropdown-menu"></p-menu>

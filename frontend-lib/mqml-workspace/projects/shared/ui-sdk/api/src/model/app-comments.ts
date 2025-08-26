@@ -3,7 +3,7 @@ import {AppWithInternal} from './app-internal';
 import {AppTag} from './app-tag';
 
 
-export interface CadComment extends AppWithInternal{
+export interface AppComment extends AppWithInternal{
   id?: number;
   value: string;
   valueStyleClass?: string;

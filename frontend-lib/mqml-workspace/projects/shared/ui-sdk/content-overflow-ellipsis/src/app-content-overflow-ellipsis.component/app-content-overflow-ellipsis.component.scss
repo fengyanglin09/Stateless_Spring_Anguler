@@ -1,0 +1,70 @@
+.cad-content-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  overflow-wrap: anywhere;
+  white-space: nowrap;
+  word-wrap: normal;
+  max-width: 200px;
+}
+
+.content-wrapper.content:not(:empty) + .content-wrapper.value {
+  display: none;
+}
+
+.app-content-overflow.text-overflow-ellipsis {
+  color: #2196F3;
+  text-decoration: underline;
+}
+
+.app-content-overflow-overlay {
+
+  min-width: 400px;
+  max-width: 400px;
+
+  .p-overlaypanel-content {
+    padding: 15px 15px 0 15px;
+  }
+
+  .app-overlay-content {
+    overflow: auto;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    max-height: 200px;
+    padding: 5px 0;
+  }
+
+  .app-overlay-divider.p-divider {
+    padding: 0;
+    margin: 10px 0;
+  }
+
+
+  .app-overlay-header {
+
+    display: flex;
+    flex-direction: column;
+
+    .app-overlay-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+  }
+
+  .app-overlay-footer {
+
+    display: flex;
+    flex-direction: column;
+
+    .app-overlay-footer-buttons {
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 0;
+    }
+
+  }
+
+}
+

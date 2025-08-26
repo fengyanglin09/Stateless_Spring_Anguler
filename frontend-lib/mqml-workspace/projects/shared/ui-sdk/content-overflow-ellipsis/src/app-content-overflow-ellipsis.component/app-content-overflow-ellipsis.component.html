@@ -1,0 +1,29 @@
+<div #container class="app-content-overflow {{styleClass}}"
+     [ngStyle]="style" [ngClass]="{'text-overflow-ellipsis cursor-pointer': textOverflow}"
+     [pTooltip]="textOverflow ? tooltip || defaultTooltip : undefined" [escape]="false"
+     (click)="handleClick($event)" (dblclick)="handleDblClick()">
+  <span class="content-wrapper content"><ng-content></ng-content></span>
+  <span class="content-wrapper value" [innerHTML]="(value || '') | appSafeHtml"></span>
+</div>
+
+<p-popover #overlayPanel styleClass="app-content-overflow-overlay" appendTo="body">
+  <div *ngIf="label" class="app-overlay-header">
+    <div class="app-overlay-title">{{label}}</div>
+    <p-divider styleClass="app-overlay-divider"></p-divider>
+  </div>
+  <div class="app-overlay-content">
+    <span class="content-wrapper content" *ngIf="containerElement" [innerHTML]="containerElement.innerHTML | appSafeHtml"></span>
+    <span class="content-wrapper value" [innerHTML]="(value || '') | appSafeHtml"></span>
+  </div>
+  <div class="app-overlay-footer">
+    <p-divider styleClass="app-overlay-divider"></p-divider>
+    <div class="app-overlay-footer-buttons">
+      <lib-app-button *ngIf="copyEnabled"
+                  [text]="true" label="Copy and Close" icon="fa-solid fa-copy"
+                  (click)="copyToClipboardAndClose()" />
+      <lib-app-button [text]="true" label="Close" icon="fa-solid fa-xmark"
+                  [severity]="'secondary'"
+                  (click)="overlayPanel.hide()" />
+    </div>
+  </div>
+</p-popover>

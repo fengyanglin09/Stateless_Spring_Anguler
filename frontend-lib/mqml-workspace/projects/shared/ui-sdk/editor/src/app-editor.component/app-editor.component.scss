@@ -1,0 +1,101 @@
+:host ::ng-deep {
+
+  .app-editor {
+    position: relative;
+    height: 400px;
+    width: auto;
+  }
+
+  .app-editor-template {
+    color: #cccccc;
+  }
+
+  .tox-tinymce {
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .mce-content-body {
+    height: inherit;
+    overflow: auto;
+  }
+
+  .app-editor-preview {
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: none;
+    border-radius: 6px;
+    background-color: #ffffff;
+    overflow-y: auto;
+    // Tiny MCE
+    padding: 16px;
+    font: 10pt/1 Helvetica, Arial, "Trebuchet MS", "Liberation Sans", FreeSans, sans-serif;
+
+    * {
+      line-height: revert;
+    }
+  }
+
+  .app-editor-preview:not(.unready):hover {
+    cursor: pointer;
+    border: 1px solid #1976D2 !important;
+  }
+
+  .app-editor-preview-label {
+    position: absolute;
+    border: 1px solid #c9d9eb;
+    background-color: white;
+    color: #337ab7;
+    margin-top: -10px;
+    margin-left: 8px;
+    height: 20px;
+  }
+
+}
+
+
+::ng-deep {
+  .tox-tinymce-aux {
+    z-index: 4000 !important;
+  }
+}
+
+
+.mention-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 1000;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 160px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+  font-size: 14px;
+}
+
+.mention-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.mention-item.justify-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mention-item:hover {
+  background-color: #eee;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+  background-size: cover;
+}
