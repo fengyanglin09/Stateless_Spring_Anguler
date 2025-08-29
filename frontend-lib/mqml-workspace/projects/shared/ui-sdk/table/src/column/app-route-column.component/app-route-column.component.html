@@ -1,0 +1,6 @@
+<div class="flex flex-1">
+  <div class="flex-grow-1 flex-shrink-1 flex" style="white-space: normal; word-break: break-all">
+    <a *ngIf="!disabled" [routerLink]="url" [queryParams]="queryParams">{{ value }}</a>
+    <span *ngIf="disabled">{{ value }}</span>
+  </div>
+</div>

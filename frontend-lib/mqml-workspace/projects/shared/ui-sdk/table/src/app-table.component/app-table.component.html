@@ -1,0 +1,212 @@
+<div class="cad-table-component">
+  <div class="cad-table-container">
+    <p-table #table
+             [alwaysShowPaginator]="alwaysShowPaginator"
+             [columnResizeMode]="columnResizeMode"
+             [columns]="_columns"
+             [currentPageReportTemplate]="_pageReportTemplate"
+             [dataKey]="dataKey"
+             [editMode]="editMode"
+             [filters]="_filters"
+             [globalFilterFields]="globalFilterFields"
+             [groupRowsBy]="groupRowsBy"
+             [lazy]="lazy"
+             [lazyLoadOnInit]="lazyLoadOnInit"
+             [loading]="loading"
+             [loadingIcon]="loadingIcon"
+             [multiSortMeta]="_multiSortMeta"
+             (onColReorder)="handleColumnReorder($event)"
+             (onFilter)="handleFilter($event)"
+             (onLazyLoad)="handleLazyLoad($event)"
+             (onPage)="handlePage($event)"
+             (onSort)="handleSort($event)"
+             (onStateRestore)="handleStateRestore($event)"
+             (onStateSave)="handleStateSave($event)"
+             (onRowSelect)="handleRowSelect($event)"
+             (onRowUnselect)="handleRowUnselect($event)"
+             (onRowExpand)="handleRowExpand($event)"
+             (onRowCollapse)="handleRowCollapse($event)"
+             [paginator]="paginator"
+             [paginatorPosition]="paginatorPosition"
+             paginatorStyleClass="cad-table-paginator {{paginatorStyleClass}}"
+             [reorderableColumns]="reorderableColumns"
+             [resizableColumns]="resizableColumns"
+             [rows]="rows"
+             [rowGroupMode]="rowGroupMode"
+             [rowSelectable]="isRowSelectable.bind(this)"
+             [rowsPerPageOptions]="rowsPerPageOptions"
+             [scrollable]="scrollable"
+             [scrollHeight]="scrollHeight"
+             [(selection)]="_selectedRows"
+             [selectionMode]="selectionMode"
+             [selectionPageOnly]="true"
+             [showCurrentPageReport]="showCurrentPageReport"
+             [sortMode]="sortMode"
+             [sortField]="_sortField"
+             [sortOrder]="_sortOrder"
+             [stateKey]="stateKey"
+             [stateStorage]="stateStorage"
+             [style]="style"
+             [styleClass]="styleClass"
+             [totalRecords]="_totalRecords"
+             [value]="_value || []">
+      <ng-container *ngIf="captionTemplate">
+        <ng-template pTemplate="caption">
+          <ng-container *ngTemplateOutlet="captionTemplate"></ng-container>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngIf="!captionTemplate && headerTitle && !paginator">
+        <ng-template pTemplate="caption">
+          <div class="cad-title-container justify-between">
+            <div class="flex">
+              <div class="cad-table-title">{{ headerTitle }}</div>
+              <div class="cad-table-total-records ml-1">
+                <p-badge *ngIf="totalRecords" [value]="_pageReportTotalRecords"></p-badge>
+              </div>
+            </div>
+            <span class="flex">
+                            <p-button icon="fa-solid fa-filter" class="mr-1" *ngIf="filterMenu"></p-button>
+                            <p-button icon="fa-solid fa-bars" [styleClass]="'cad-button-icon'"
+                                      [rounded]="true" [text]="true" (click)="menu.toggle($event)"></p-button>
+                        </span>
+          </div>
+        </ng-template>
+      </ng-container>
+
+      <!--  Title for paginated tables, see above for non-paginated tables -->
+      <ng-template pTemplate="paginatorleft">
+        <div class="cad-title-container" *ngIf="headerTitle">
+          <div class="flex items-center justify-between">
+            <div class="cad-table-title">{{ headerTitle }}</div>
+            <div class="cad-table-total-records ml-1">
+              <p-badge *ngIf="totalRecords" [value]="_pageReportTotalRecords"></p-badge>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="paginatorleftTemplate">
+          <div class="cad-paginator-left">
+            <ng-container
+              *ngTemplateOutlet="paginatorleftTemplate; context: {$implicit: this}"></ng-container>
+          </div>
+        </ng-container>
+      </ng-template>
+
+      <ng-template pTemplate="paginatorright">
+        <ng-container *ngIf="paginatorrightTemplate">
+          <div class="cad-paginator-right">
+            <ng-container
+              *ngTemplateOutlet="paginatorrightTemplate; context: {$implicit: this}"></ng-container>
+          </div>
+        </ng-container>
+        <p-button icon="fa-solid fa-filter" class="mr-1" *ngIf="filterMenu"></p-button>
+        <p-button icon="fa-solid fa-bars" [styleClass]="'cad-button-icon'"
+                  [rounded]="true" [text]="true" (click)="menu.toggle($event)"></p-button>
+      </ng-template>
+
+      <ng-container *ngIf="!headerTemplate && columns">
+        <ng-template pTemplate="header" let-columns>
+          <tr class="cad-header-row" lib-app-table-header-column
+              [columns]="columns" [selectionMode]="selectionMode"
+              [rowExpand]="rowExpand" [checkboxSelector]="checkboxSelector"
+              (onSelectDeselectAllClick)="handleCheckboxAllSelectDeselect($event)">
+          </tr>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="headerTemplate">
+        <ng-template pTemplate="header">
+          <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="groupheaderTemplate">
+        <ng-template pTemplate="groupheader" let-item>
+          <tr pRowGroupHeader class="cad-table-group-header">
+            <ng-container
+              *ngTemplateOutlet="groupheaderTemplate; context: { $implicit: item}"></ng-container>
+          </tr>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="groupfooterTemplate">
+        <ng-template pTemplate="groupfooter" let-item>
+          <tr class="cad-table-group-footer">
+            <ng-container
+              *ngTemplateOutlet="groupfooterTemplate; context: { $implicit: item}"></ng-container>
+          </tr>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="bodyTemplate">
+        <ng-template pTemplate="body" let-item let-rowIndex="rowIndex" let-editing="editing"
+                     let-expanded="expanded">
+          <ng-container
+            *ngTemplateOutlet="bodyTemplate; context: { $implicit: item, editing: editing, rowIndex: rowIndex, expanded: expanded }">
+          </ng-container>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="!bodyTemplate">
+        <ng-template pTemplate="body" let-columns="columns" let-rowItem let-expanded="expanded"
+                     let-rowIndex="rowIndex">
+          <tr class="cad-body-row" [pSelectableRow]="rowItem" [pSelectableRowIndex]="rowIndex"
+              lib-app-table-body-column [checkboxSelector]="checkboxSelector"
+              [columns]="columns" [rowExpand]="rowExpand" [expanded]="expanded"
+              [rowIndex]="rowIndex" [rowItem]="rowItem" [processing]="rowItem[CadInternalKey].processing">
+          </tr>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="rowexpansionTemplate">
+        <ng-template [pTemplate]="rowexpansionTemplate ? 'rowexpansion' : 'rowexpansion-hidden'" let-item>
+          <tr class="row-expansion">
+            <td [colSpan]="_columnCount">
+              <ng-container
+                *ngTemplateOutlet="rowexpansionTemplate; context: { $implicit: item }"></ng-container>
+            </td>
+          </tr>
+        </ng-template>
+      </ng-container>
+
+      <ng-template pTemplate="loadingbody" let-columns>
+        <ng-container *ngIf="!value?.length">
+          <tr *ngFor="let rowNumber of [].constructor(skeletonRows)">
+            <td *ngFor="let column of [].constructor(_columnCount > 0 ? _columnCount : skeletonColumns)">
+              <div class="loading-text"></div>
+              <p-skeleton [ngStyle]="{'width': '100%'}"></p-skeleton>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columns?.length ? (columns.length + (rowExpand ? 1 : 0)) : 1"
+              class="text-center">
+            <strong>{{ emptyMessage }}</strong>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-container *ngIf="summaryTemplate">
+        <ng-template pTemplate="summary">
+          <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
+        </ng-template>
+      </ng-container>
+    </p-table>
+  </div>
+</div>
+
+<!-- Dialog to change column selection -->
+<lib-app-table-column-selection-dialog #columnSelectionDialog
+                                   [reorderable]="reorderableColumns"
+                                   (onChange)="handleColumnSelection($event)">
+</lib-app-table-column-selection-dialog>
+
+<!-- Main table menu -->
+<p-menu #menu
+        appendTo="body"
+        [model]="_menuItems"
+        [popup]="true"
+        styleClass="wb-dropdown-menu wb-min-width"></p-menu>
+

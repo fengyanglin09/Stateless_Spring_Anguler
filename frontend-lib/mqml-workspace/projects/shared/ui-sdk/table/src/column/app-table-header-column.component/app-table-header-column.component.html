@@ -1,0 +1,64 @@
+<th *ngIf="rowExpand" class="app-header-column app-header-column-row-expand"></th>
+<th class="app-header-column" *ngIf="checkboxSelector && selectionMode !== 'single'">
+  <p-tableHeaderCheckbox (click)="handleCheckboxAllSelectDeselect($event)"></p-tableHeaderCheckbox>
+</th>
+<ng-container *ngFor="let column of columns">
+  <th class="app-header-column"
+      pReorderableColumn [pReorderableColumnDisabled]="!column.reorderable"
+      pResizableColumn [pResizableColumnDisabled]="column.resizable !== undefined && !column.resizable"
+      [pSortableColumn]="column?.sort?.field" [pSortableColumnDisabled]="!column?.sort?.field"
+      [pTooltip]="column[AppInternalKey].tooltip?.value" [escape]="false"
+      [tooltipPosition]="column[AppInternalKey].tooltip?.position"
+      [tooltipStyleClass]="column[AppInternalKey].tooltip?.styleClass"
+      [ngClass]="column[AppInternalKey].styleClass"
+      [style]="column[AppInternalKey].style"
+      [ngStyle]="{display: column?.hidden ? 'none' : '', 'vertical-align': 'middle'}">
+    <div class="app-header-column-content flex-initial align-content-center flex-wrap"
+         [ngClass]="{'app-column-status-tab': column?.content?.statusTabProvider}">
+      <p-columnFilter #filter *ngIf="column.filter"
+                      [field]="column.filter.field"
+                      [type]="column.filter.type"
+                      [display]="column.filter.display || 'menu'"
+                      [showMenu]="column.filter.showMenu !== undefined ? column.filter.showMenu : true"
+                      [operator]="column.filter.operator || 'and'"
+                      [showOperator]="column.filter.showOperator !== undefined ? column.filter.showOperator : true"
+                      [showMatchModes]="column.filter.showMatchModes !== undefined ? column.filter.showMatchModes : true"
+                      [showAddButton]="column.filter.showAddButton !== undefined ? column.filter.showAddButton : true"
+                      [showApplyButton]="column.filter.showApplyButton !== undefined ? column.filter.showApplyButton : true"
+                      [showClearButton]="column.filter.showClearButton !== undefined ? column.filter.showClearButton : true"
+                      [matchMode]="column.filter.matchMode"
+                      [matchModeOptions]="column.filter.matchModeOptions">
+        <ng-container [ngSwitch]="column.filter.type">
+          <ng-container *ngSwitchCase="'multiselect'">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-listbox [ngModel]="value" [options]="column.filter.filterOptions"
+                         [listStyle]="{'min-width': '100px', 'max-height': '200px'}"
+                         (onChange)="filter($event.value)" [filter]="true"
+                         [multiple]="true" [checkbox]="true"  [metaKeySelection]="false"
+                         optionLabel="label" optionValue="value">
+              </p-listbox>
+            </ng-template>
+          </ng-container>
+          <ng-container *ngSwitchCase="'select'">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-select [ngModel]="value" [options]="column?.filter.filterOptions"
+                        (onChange)="filter($event.value)" appendTo="body"
+                        optionLabel="label" optionValue="value" placeholder="Any">
+              </p-select>
+            </ng-template>
+          </ng-container>
+          <ng-container *ngSwitchCase="'date'">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-datePicker (onSelect)="filter($event)"
+                            [dateFormat]="column?.filter.dateFormat || 'mm-dd-yy'"></p-datePicker>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+      </p-columnFilter>
+      <i *ngIf="column?.header?.icon" class="app-header-icon mt-1" [class]="column?.header.icon"></i>
+      <span class="app-header-title"
+            *ngIf="column?.header?.title">{{ column?.header.title }}</span>
+      <p-sortIcon *ngIf="column?.sort?.field" [field]="column.sort?.field"></p-sortIcon>
+    </div>
+  </th>
+</ng-container>

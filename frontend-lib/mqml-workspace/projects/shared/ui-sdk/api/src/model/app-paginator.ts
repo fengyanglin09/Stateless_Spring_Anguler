@@ -1,15 +1,15 @@
-export interface CadPaginator {
+export interface AppPaginator {
   offset: number;
   limit: number;
   includeTotals: boolean;
 }
 
-export interface CadPageRequest extends CadPaginator{
+export interface AppPageRequest extends AppPaginator{
   filter: string[];
   sort: string[];
 }
 
-export interface CadPageResult<T> extends CadPaginator {
+export interface AppPageResult<T> extends AppPaginator {
   totalElements?: number;
   totalPages?: number;
   hasPrevious: boolean;

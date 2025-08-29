@@ -9,7 +9,7 @@ import {
   Output, SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {ControlValueAccessor, FormsModule} from '@angular/forms';
+import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Editor, RawEditorOptions} from 'tinymce';
 import {AppSafeHtmlPipe, AppStyle, AppUser} from 'mqml-angular-ui-sdk/api';
 import {EditorComponent} from '@tinymce/tinymce-angular';
@@ -34,7 +34,14 @@ import {NgClass, NgForOf, NgIf} from '@angular/common';
   ],
   templateUrl: './app-editor.component.html',
   standalone: true,
-  styleUrl: './app-editor.component.scss'
+  styleUrl: './app-editor.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: AppEditorComponent,
+      multi: true
+    }
+  ]
 })
 export class AppEditorComponent implements OnChanges, ControlValueAccessor, OnInit, AfterViewInit {
   @Input() init: RawEditorOptions | undefined;

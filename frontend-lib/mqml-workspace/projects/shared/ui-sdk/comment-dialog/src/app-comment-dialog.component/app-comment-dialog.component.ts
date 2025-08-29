@@ -3,7 +3,7 @@ import {MenuItem, PrimeTemplate} from 'primeng/api';
 import {AppBadgeSeverity, AppComment, AppStyle, AppTagSeverity} from 'mqml-angular-ui-sdk/api';
 import {Menu} from 'primeng/menu';
 import {AppButtonSeverity} from 'mqml-angular-ui-sdk/button';
-import {ControlValueAccessor} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {
   AppCommentDialogDeleteEvent,
   AppCommentDialogInputModel,
@@ -31,7 +31,14 @@ import {AppDialogComponent} from 'mqml-angular-ui-sdk/dialog';
   ],
   templateUrl: './app-comment-dialog.component.html',
   standalone: true,
-  styleUrl: './app-comment-dialog.component.scss'
+  styleUrl: './app-comment-dialog.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: AppCommentDialogComponent,
+      multi: true
+    }
+  ]
 })
 export class AppCommentDialogComponent implements OnChanges, ControlValueAccessor  {
   @Input() closeable: boolean = false;

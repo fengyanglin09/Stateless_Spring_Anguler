@@ -1,0 +1,9 @@
+<div class="cad-tag-list" *ngIf="tags.length">
+  <lib-app-tag *ngFor="let tag of tags"
+           [value]="tag.value"
+           [rounded]="tag.rounded || false"
+           [severity]="tag.severity"
+           [styleClass]="tag._cadInternal?.['styleClass']"
+           [style]="tag._cadInternal?.['style']">
+  </lib-app-tag>
+</div>

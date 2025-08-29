@@ -1,0 +1,38 @@
+<lib-app-dialog #dialog title="Select Columns"
+            [style]="{'width': '50vw'}"
+            [processing]="processing">
+  <ng-template pTemplate="content">
+    <p-pickList #columnList
+                [source]="availableColumns"
+                [target]="selectedColumns"
+                sourceHeader="Available Columns"
+                targetHeader="Selected Columns"
+                [dragdrop]="reorderable"
+                [responsive]="true"
+                [sourceStyle]="{'height':'30rem'}"
+                [targetStyle]="{'height':'30rem'}"
+                filterBy="title"
+                sourceFilterPlaceholder="Search by name"
+                targetFilterPlaceholder="Search by name">
+      <ng-template let-column pTemplate="item">
+        <div>{{ column.title }}
+          <lib-app-tag *ngIf="column.default" value="default" styleClass="p-tag-secondary"></lib-app-tag>
+        </div>
+      </ng-template>
+    </p-pickList>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton type="button" *ngIf="showRestoreDefaults"
+            class="p-button-text"
+            (click)="restore()"
+            [disabled]="processing"
+            icon="fa-solid fa-table-columns"
+            label="Restore Default Columns"></button>
+    <button pButton type="button"
+            class="p-button-text"
+            (click)="save()"
+            [disabled]="processing"
+            icon="pi pi-save"
+            label="Save"></button>
+  </ng-template>
+</lib-app-dialog>
