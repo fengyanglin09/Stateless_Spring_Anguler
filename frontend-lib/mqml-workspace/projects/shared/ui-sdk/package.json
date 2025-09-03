@@ -10,7 +10,8 @@
     "rxjs": "~7.8.0",
     "@tinymce/tinymce-angular": "^9.1.0",
     "tinymce": "^8.0.2",
-    "@ngneat/until-destroy": "^10.0.0"
+    "@ngneat/until-destroy": "^10.0.0",
+    "lodash-es": "^4.17.21"
   },
   "dependencies": {
     "tslib": "^2.8.1"

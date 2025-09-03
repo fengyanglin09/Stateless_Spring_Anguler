@@ -11,8 +11,14 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
+    "useDefineForClassFields": false,
     "importHelpers": true,
     "target": "ES2022",
+//    "lib": [
+//      "ES2022",
+//      "dom"
+//    ],
     "module": "preserve",
     "paths": {
       "ui-layout": [
@@ -28,7 +34,9 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "typeCheckHostBindings": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+//    /* 👇 this is the key for constructor param decorators */
+//    "enableExperimentalDecorators": true
   },
   "files": [],
   "references": [

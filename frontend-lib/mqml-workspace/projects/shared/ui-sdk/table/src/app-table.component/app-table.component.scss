@@ -1,0 +1,119 @@
+:host ::ng-deep {
+
+  .app-title-container {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 32px;
+    line-height: 32px;
+
+    .app-table-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      font-size: large;
+      font-weight: 700;
+    }
+
+  }
+
+  .p-paginator {
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+
+    .p-paginator-current {
+      white-space: nowrap;
+    }
+
+    .p-paginator-pages {
+      display: flex !important;;
+      flex-wrap: nowrap;
+    }
+
+    .p-paginator-content-start {
+      display: flex;
+      flex: 1 1 100px;
+      margin-left: auto;
+      margin-right: 0;
+      min-width: 0;
+    }
+
+    .p-paginator-content-end {
+      display: flex;
+      flex: 0 0 42px;
+      margin-right: auto;
+      padding-left: 5px;
+      margin-inline-start: unset;
+    }
+
+    .p-select-label {
+      height: 31px;
+      padding: 0.313rem var(--p-select-padding-x);
+    }
+
+    .app-paginator-left,
+    .app-paginator-right {
+      display: flex;
+      flex-grow: 1;
+    }
+
+  }
+
+  .app-button-icon {
+    background-color: rgba(33, 150, 243, 0.12);
+  }
+
+  .app-title-container .p-button,
+  .p-paginator .p-button,
+  .p-paginator .p-paginator-element,
+  .app-body-column-row-expand .p-button,
+  .p-button.app-menu-column-button,
+  .app-button-icon {
+    height: 31px;
+    width: 31px;
+    min-width: 31px;
+  }
+
+  .app-tag-list app-tag:not(:first-child) {
+    margin-left: 2px;
+  }
+
+  tr.app-table-group-header > td {
+    background-color: #ffffff;
+  }
+
+  .app-header-row .app-header-column.app-header-column-row-expand {
+    width: 20px !important;
+  }
+
+  .app-body-column-content .spinner-xs {
+    width: 16px;
+    height: 16px;
+  }
+
+  .app-header-column {
+    padding: 0 !important;
+  }
+
+  .app-header-column-content {
+    min-height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    p-sortIcon {
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      display: inline-flex;
+      vertical-align: middle;
+      /*height: var(--p-button-icon-only-width);*/
+    }
+
+  }
+
+}
+

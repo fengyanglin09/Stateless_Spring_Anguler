@@ -1,0 +1,12 @@
+<div class="checkbox-container">
+  <p-checkbox *ngIf="!columnInstance.loading"
+              [binary]="true"
+              [disabled]="disabled || processing"
+              [escape]="false"
+              [ngModel]="booleanValue"
+              [ngStyle]="{'cursor': disabled ? 'not-allowed': null}"
+              [pTooltip]="tooltipContent"
+              [tooltipPosition]="tooltipPosition"
+              [tooltipStyleClass]="tooltipStyleClass"
+              [readonly]="true"></p-checkbox>
+</div>

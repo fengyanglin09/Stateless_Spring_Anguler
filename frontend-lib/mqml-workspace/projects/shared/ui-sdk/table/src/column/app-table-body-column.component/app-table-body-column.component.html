@@ -1,0 +1,88 @@
+<td *ngIf="rowExpand" class="cad-body-column cad-body-column-row-expand">
+  <button type="button" pButton pRipple [pRowToggler]="rowItem"
+          [disabled]="rowItem['_table']?.rowExpandDisabled"
+          class="p-button-text p-button-rounded p-button-plain"
+          [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+</td>
+
+<td class="cad-body-column cad-body-column-checkbox-selector" *ngIf="checkboxSelector">
+  <p-tableCheckbox [index]="rowIndex" [value]="rowItem"></p-tableCheckbox>
+</td>
+
+<td *ngFor="let column of columns; let colIndex=index" class="cad-body-column"
+    [ngClass]="_rowItemColumns[colIndex].styleClasses"
+    [ngStyle]="{display: column?.hidden ? 'none' : ''}"
+    [style]="_rowItemColumns[colIndex].style"
+    (click)="column.body && column.body.click && column.body.click(rowItem, _rowItemInstances[colIndex], rowIndex)">
+
+  <div class="cad-body-column-content" [ngClass]="{'cad-column-status-tab': column?.body?.statusTabProvider}">
+    <!-- Loading icon -->
+    <p-progressSpinner styleClass="spinner-xs" strokeWidth="8"
+                       *ngIf="_rowItemInstances[colIndex].loading"></p-progressSpinner>
+
+    <ng-container
+      *ngIf="column?.body?.statusTabProvider && column?.body?.statusTabProvider(rowItem, rowIndex) as statusTab">
+      <div appendTo="body" *ngIf="statusTab" class="status-tab"
+           [pTooltip]="statusTab?.tooltip"
+           [escape]="false"
+           [ngClass]="statusTab?.class"
+           [tooltipPosition]="statusTab?.tooltipPosition"
+           [tooltipStyleClass]="statusTab?.tooltipStyleClass"></div>
+    </ng-container>
+
+    <!-- If template is provided use the template -->
+
+
+    <!-- If template and checkboxSelector are not provided use the other configuration -->
+    <ng-container *ngIf="!_rowItemInstances[colIndex]?.loading">
+      <ng-container [ngSwitch]="column?.body?.type">
+        <ng-container *ngSwitchCase="CadTableColumnType.CHECKBOX">
+          <cad-checkbox-column [column]="column" [rowIndex]="rowIndex" [rowItem]="rowItem"
+                               [processing]="processing"
+                               [columnInstance]="_rowItemInstances[colIndex]"></cad-checkbox-column>
+        </ng-container>
+        <ng-container *ngSwitchCase="CadTableColumnType.DATE">
+          <cad-date-column [column]="column" [rowIndex]="rowIndex" [rowItem]="rowItem"
+                           [columnInstance]="_rowItemInstances[colIndex]"></cad-date-column>
+        </ng-container>
+        <ng-container *ngSwitchCase="CadTableColumnType.MENU">
+          <cad-menu-column [column]="column" [rowIndex]="rowIndex" [rowItem]="rowItem"
+                           [columnInstance]="_rowItemInstances[colIndex]"></cad-menu-column>
+        </ng-container>
+        <ng-container *ngSwitchCase="CadTableColumnType.NUMBER">
+          <cad-number-column [column]="column" [rowIndex]="rowIndex" [rowItem]="rowItem"
+                             [columnInstance]="_rowItemInstances[colIndex]"></cad-number-column>
+        </ng-container>
+        <ng-container *ngSwitchCase="CadTableColumnType.ROUTE">
+          <cad-route-column [column]="column" [rowIndex]="rowIndex" [rowItem]="rowItem"
+                            [columnInstance]="_rowItemInstances[colIndex]"></cad-route-column>
+        </ng-container>
+        <ng-container *ngSwitchCase="CadTableColumnType.TAG">
+          <cad-tag-column [column]="column" [rowIndex]="rowIndex" [rowItem]="rowItem"
+                          [columnInstance]="_rowItemInstances[colIndex]"></cad-tag-column>
+        </ng-container>
+        <ng-container *ngSwitchCase="CadTableColumnType.TEMPLATE">
+          <ng-container
+            *ngTemplateOutlet="$any(column.body).templateProvider(); context: { $implicit: rowItem, column: column, rowIndex: rowIndex}"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="CadTableColumnType.TEXT">
+          <cad-text-column [column]="column" [rowIndex]="rowIndex" [rowItem]="rowItem"
+                           [columnInstance]="_rowItemInstances[colIndex]"></cad-text-column>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          Column body {{ column.body?.type || 'NA' }} not implemented
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="_rowItemColumns[colIndex]?.chips as chips">
+        <p-chip *ngFor="let chip of chips"
+                [label]="chip.value"
+                [icon]="chip.icon"
+                [removable]="chip.removable"
+                (onRemove)="handleChipRemove($event, chip)"
+                [image]="chip.image"
+                [styleClass]="chip.styleClass">
+        </p-chip>
+      </ng-container>
+    </ng-container>
+  </div>
+</td>

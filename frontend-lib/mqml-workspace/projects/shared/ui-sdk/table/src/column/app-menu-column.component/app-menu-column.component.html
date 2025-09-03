@@ -1,0 +1,8 @@
+<p-button [icon]="$any(column.body).icon || 'fa-solid fa-ellipsis-vertical'"
+          styleClass="cad-menu-column-button cad-button-icon" [rounded]="true"
+          [text]="true" (click)="menu.toggle($event)"></p-button>
+<p-menu #menu
+        appendTo="body"
+        [model]="menuItems"
+        [popup]="true"
+        styleClass="wb-dropdown-menu"></p-menu>
