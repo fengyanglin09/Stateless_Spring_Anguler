@@ -9,6 +9,7 @@ import {AppLocalStorageService} from './app.local-storage.service';
 import {AppDefaultAuthenticationService} from './app.default-authentication.service';
 import {AppConfigurationService} from './app.configuration.service';
 import {ifvisible} from '@rosskevin/ifvisible';
+import {error} from 'ng-packagr/src/lib/utils/log';
 
 
 @UntilDestroy()
@@ -46,6 +47,9 @@ export class AppSessionMonitorService {
                 this.log('Wakeup detected, starting session monitor.');
                 this.start();
             });
+        }
+        else{
+          throw new Error('AppSessionMonitorProvider is not provided. Please provide it in your module.');
         }
     }
 
@@ -110,9 +114,15 @@ export class AppSessionMonitorService {
 
     private checkStatus(): void {
         this.log("Keep alive.");
+
+        const sessionMonitorProvider = this.appSessionMonitorProvider;
+        if (!sessionMonitorProvider) {
+            throw new Error('AppSessionMonitorProvider is not provided. Please provide it in your module.');
+        }
+
         forkJoin({
             session: this.authenticationService.getSession(),
-            status: this.appSessionMonitorProvider.getStatus()
+            status: sessionMonitorProvider.getStatus()
         }).pipe(
             untilDestroyed(this)
         ).subscribe({
