@@ -2,29 +2,30 @@ import {Component, computed, OnDestroy, Renderer2, ViewChild} from '@angular/cor
 import {filter, Subscription} from 'rxjs';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {AppSidebar} from '../app.sidebar/app.sidebar';
-// import {AppTopbar} from '../app.topbar/app.topbar';
+import {AppTopbar} from '../app.topbar/app.topbar';
 import {LayoutService} from '../../service/layout.service';
 import {AppConfigurationService, AppSessionMonitorService} from 'mqml-angular-ui-layout-sdk/layout-interface';
-import {AppEnvironmentRibbonComponent} from 'mqml-angular-ui-sdk/environment-ribbon'
 import {NgClass} from '@angular/common';
 import {AppRightMenu} from '../app.rightmenu/app.rightmenu';
 import {AppBreadcrumb} from '../app.breadcrumb/app.breadcrumb';
 import {AppFooter} from '../app.footer/app.footer';
 import {AppConfigurator} from '../app.configurator/app.configurator';
 import {Toast} from 'primeng/toast';
+import {AppEnvironmentRibbonComponent} from 'mqml-angular-ui-sdk/environment-ribbon';
 @Component({
   selector: 'lib-app-layout',
   imports: [
-    AppEnvironmentRibbonComponent,
     NgClass,
-    // AppTopbar,
+    AppTopbar,
     AppRightMenu,
     AppSidebar,
     AppBreadcrumb,
     RouterOutlet,
     AppFooter,
     AppConfigurator,
-    Toast
+    Toast,
+    AppEnvironmentRibbonComponent,
+    AppEnvironmentRibbonComponent
   ],
   templateUrl: './app.layout.html',
   styleUrls: ['./app.layout.scss']

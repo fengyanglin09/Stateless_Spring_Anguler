@@ -23,16 +23,16 @@
     "module": "ES2022",
     "paths": {
       "mqml-angular-ui-sdk/*": [
-        "./projects/shared/ui-sdk/*"
+        "./dist/ui-sdk/*"
       ],
       "mqml-angular-ui-sdk": [
-        "./projects/shared/ui-sdk/*"
+        "./dist/ui-sdk/*"
       ],
       "mqml-angular-ui-layout-sdk/*": [
-        "./projects/shared/ui-layout/*"
+        "./dist/ui-layout/*"
       ],
       "mqml-angular-ui-layout-sdk": [
-        "./projects/shared/ui-layout/*"
+        "./dist/ui-layout/*"
       ]
     }
   },
