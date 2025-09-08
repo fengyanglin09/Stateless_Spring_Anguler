@@ -4,13 +4,14 @@ import {NgClass, NgIf, NgStyle} from '@angular/common';
 
 @Component({
   selector: 'lib-app-environment-ribbon',
+  standalone: true,
   imports: [
     NgIf,
     NgStyle,
     NgClass
   ],
   templateUrl: './app-environment-ribbon.component.html',
-  styleUrl: './app-environment-ribbon.component.scss'
+  styleUrls: ['./app-environment-ribbon.component.scss']
 })
 export class AppEnvironmentRibbonComponent {
   @Input() label: string = '';

@@ -1,0 +1,138 @@
+<div class="layout-topbar-start">
+  <a class="layout-topbar-logo" routerLink="/">
+    <img class="layout-company-logo" src="assets/images/mayo-clinic-white.png" alt="Mayo Clinic"/>
+  </a>
+
+  <a #menuButton class="layout-menu-button" (click)="onMenuButtonClick()">
+    <i class="pi pi-chevron-right"></i>
+  </a>
+
+  <a #mobileMenuButton class="layout-topbar-mobile-button" (click)="onTopbarMenuToggle()">
+    <i class="pi pi-ellipsis-v"></i>
+  </a>
+</div>
+
+<div class="layout-topbar-end">
+  <a class="layout-topbar-company-name" routerLink="/">
+    <h3>{{ configurationService.configuration.applicationName }}</h3>
+  </a>
+  <div class="layout-topbar-actions-start">
+    <p-megaMenu [model]="model" styleClass="layout-megamenu" breakpoint="0px"></p-megaMenu>
+  </div>
+  <div class="layout-topbar-actions-end">
+    <ul class="layout-topbar-items">
+      @if (searchOptions.length) {
+        <li>
+
+          <p-inputgroup styleClass="search-input-group">
+            <p-splitbutton [label]="searchSelected?.label" [model]="searchOptions"/>
+            <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" pInputText
+                   placeholder="Search term">
+            <p-button icon="pi pi-search" (click)="onSearch()"/>
+          </p-inputgroup>
+        </li>
+      }
+      <li *ngFor="let menuButton of topBarMenuButtons" (click)="topMenuButton.onItemClick($event)">
+        <a pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
+          <lib-app-topbar-menu-button #topMenuButton [icon]="menuButton.icon" [iconClass]="menuButton.iconClass"
+                                  [iconStyle]="menuButton.iconStyle" [items]="menuButton.items"
+                                  [tooltip]="menuButton.tooltip" [tooltipPosition]="menuButton.tooltipPosition"
+                                  [tooltipStyleClass]="menuButton.tooltipStyleClass"
+                                  [tooltipZIndex]="menuButton.tooltipZIndex"
+                                  [tooltipAppendTo]="menuButton.tooltipAppendTo"
+                                  [badgeOverlay]="menuButton.badgeOverlay"
+                                  [badgeValue]="menuButton.badgeValue"
+                                  [badgeSize] ="menuButton.badgeSize"
+                                  [badgeStyle]="menuButton.badgeStyle"
+                                  [badgeSeverity]="menuButton.badgeSeverity"
+                                  (click)="onTopBarItemClicked($event, menuButton)"/>
+        </a>
+      </li>
+      <li>
+        <a pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein"
+           leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
+          <p-avatar styleClass="user-picture" [image]="session?.authentication?.photoUrl"
+                    shape="circle"></p-avatar>
+        </a>
+        <div class="hidden">
+          <ul class="list-none p-0 m-0">
+            <li class="user-profile">
+              <p-avatar [image]="session?.authentication?.photoUrl"
+                        styleClass="role-avatar p-mr-2" size="xlarge"
+                        shape="circle"></p-avatar>
+              <span class="user-details">
+                                        <div class="basic-info">
+                                          <div class="name">{{ session?.authentication?.fullName }}</div>
+                                          <div class="job-title">{{ session?.authentication?.jobTitle }}</div>
+                                          <div class="department">{{ session?.authentication?.department }}</div>
+                                          <div class="btn-edit" *ngIf="session?.isSupportUser()">
+                                            <button pButton pRipple type="button"
+                                                    (click)="userDialog.show()"
+                                                    class="p-button-rounded p-button-outlined p-button-sm"
+                                                    icon="fa fa-user-edit"
+                                                    [style]="{'color': '#337ab7'}"></button>
+                                          </div>
+                                        </div>
+                                        <div class="roles">
+                                          <span *ngFor="let role of session?.authentication?.roles"
+                                                class="role-pill">{{ role.displayName }}</span>
+                                        </div>
+                                      </span>
+            </li>
+            @for (menuItem of userMenuItems; track index; let index = $index) {
+              <li>
+                <a class="cursor-pointer flex items-center py-2 hover:surface-hover transition-duration-150 transition-all px-3 py-2"
+                   pRipple [routerLink]="menuItem.routerLink"
+                   (click)="menuItem.command ? menuItem.command({originalEvent: $event, item: menuItem, index: index}) : null">
+                  <i class="fa mr-2 text-primary-700 {{menuItem.icon}} {{menuItem.iconClass}}" [style]="menuItem.iconStyle"></i>
+                  <span>{{menuItem.label}}</span>
+                </a>
+                <ul class="list-none p-0 m-0">
+                  @for (subMenuItem of menuItem.items; track subMenuItem.automationId; let subIndex = $index) {
+                    <li>
+                      <a class="cursor-pointer flex items-center py-2 hover:surface-hover transition-duration-150 transition-all px-3 py-2"
+                         pRipple [routerLink]="subMenuItem.routerLink"
+                         (click)="subMenuItem.command ? subMenuItem.command({originalEvent: $event, item: subMenuItem, index: subIndex}) : null">
+                        <i class="fa mr-2 text-primary-700 {{subMenuItem.icon}} {{subMenuItem.iconClass}}" [style]="subMenuItem.iconStyle"></i>
+                        <span>{{subMenuItem.label}}</span>
+                      </a>
+                    </li>
+                  }
+                </ul>
+              </li>
+            }
+            @if (userMenuItems.length) {
+              <li class="divider"></li>
+            }
+            <li class="environment">
+              <a class="cursor-pointer flex items-center py-2 hover:surface-hover transition-duration-150 transition-all px-3 py-2"
+                 pRipple
+                 (click)="this.configurationService.configuration.environmentRibbonVisible = !this.configurationService.configuration.environmentRibbonVisible">
+                <i class="fa mr-2"
+                   [ngClass]="{'fa-eye success': this.configurationService.configuration.environmentRibbonVisible, 'fa-eye-slash danger' : !this.configurationService.configuration.environmentRibbonVisible}"></i>
+                <span>Environment Ribbon</span>
+              </a>
+            </li>
+            <li>
+              <a class="cursor-pointer flex items-center py-2 hover:surface-hover transition-duration-150 transition-all px-3 py-2"
+                 pRipple
+                 (click)="this.configurationService.clearCache()">
+                <i class="fa mr-2 fa-solid fa-broom text-primary-700"></i>
+                <span>Clear Application Cache</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="logout()"
+                 class="cursor-pointer flex items-center py-2 hover:surface-hover transition-duration-150 transition-all px-3 py-2"
+                 pRipple>
+                <i class="pi pi-power-off mr-2"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<lib-app-user-info-dialog #userDialog></lib-app-user-info-dialog>

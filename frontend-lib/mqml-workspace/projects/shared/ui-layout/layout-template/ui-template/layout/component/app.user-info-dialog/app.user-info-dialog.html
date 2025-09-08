@@ -1,0 +1,66 @@
+<lib-app-dialog styleClass="user-info-dialog" title="User Information" [(visible)]="visible" [modal]="true"
+            position="top" [resizable]="false" [style]="{width: '50vw'}"
+            [loading]="loading" [processing]="processing" [dismissableMask]="true">
+  <div class="user pt-2" *ngIf="visible">
+    <p-avatar image="{{currentUser?.photoUrl}}" size="xlarge" shape="circle"></p-avatar>
+    <div class="basic-info" *ngIf="!loading">
+      <div class="name">{{ currentUser?.fullName }}</div>
+      <div class="job-title">{{ currentUser?.jobTitle }}</div>
+      <div class="department">{{ currentUser?.department }}</div>
+    </div>
+    <div class="basic-info-skeleton flex flex-col" *ngIf="loading">
+      <p-skeleton height="2rem" styleClass="mb-1"/>
+      <p-skeleton width="10rem" styleClass="mb-1"/>
+      <p-skeleton width="5rem" styleClass="mb-1"/>
+    </div>
+  </div>
+  <div class="roles">
+    <p-table [value]="allRoles" sortField="friendlyName" [sortOrder]="1"
+             [loading]="processing" responsiveLayout="scroll" styleClass="p-datatable-striped">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>
+            <p-selectButton (click)="toggleAllRoles()" [(ngModel)]="allRolesState"></p-selectButton>
+          </th>
+          <th>
+            <p-avatar icon="fa fa-user" [style]="{'background-color':'#333', 'color': '#fff'}"
+                      size="normal" shape="circle"></p-avatar>
+          </th>
+          <th>Role</th>
+          <th>Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-role>
+        <tr>
+          <td>
+            <p-checkbox inputId="roleCheckbox" name="roles" [value]="role"
+                        (onChange)="initState()" [(ngModel)]="selectedRoles"></p-checkbox>
+          </td>
+          <td>
+            <p-avatar icon="fa fa-check" [style]="{'background-color':'#3c763d', 'color': '#fff'}"
+                      shape="circle"></p-avatar>
+          </td>
+          <td>{{ role?.displayName }}</td>
+          <td class="grow">{{ role?.description }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button class="p-button-text p-button-danger"
+              (click)="reset()"
+              variant="text"
+              icon="pi pi-undo"
+              label="Reset"
+              severity="danger"
+              [disabled]="processing"
+              *ngIf="_hasChanges"/>
+    <p-button type="button"
+              variant="text"
+              [loading]="processing"
+              (click)="save()"
+              icon="pi pi-save"
+              label="Save"
+              [disabled]="!_hasUnsavedChanges || processing"/>
+  </ng-template>
+</lib-app-dialog>
