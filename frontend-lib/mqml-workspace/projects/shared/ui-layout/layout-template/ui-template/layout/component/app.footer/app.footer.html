@@ -1,0 +1,10 @@
+<div class="layout-footer grid grid-cols-2 content-between m-0">
+  <div class="pt-2 text-bold" [innerHTML]="appConfigurationService.configuration.applicationFooter.leftContent"></div>
+  <ng-container *ngIf="appConfigurationService.configuration.applicationFooter.rightContent; else defaultRightFooter">
+    <div class="pt-2 text-right" [innerHTML]="appConfigurationService.configuration.applicationFooter.rightContent"></div>
+  </ng-container>
+</div>
+
+<ng-template #defaultRightFooter>
+  <div class="pt-2 pr-4 text-right">&copy; {{currentYear}} Mayo Foundation for Medical Education and Research. All Rights Reserved.</div>
+</ng-template>

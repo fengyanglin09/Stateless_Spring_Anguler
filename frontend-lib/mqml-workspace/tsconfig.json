@@ -13,19 +13,26 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": false,
     "useDefineForClassFields": false,
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-//    "lib": [
-//      "ES2022",
-//      "dom"
-//    ],
-    "module": "preserve",
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "module": "ES2022",
     "paths": {
-      "ui-layout": [
-        "./dist/ui-layout"
+      "mqml-angular-ui-sdk/*": [
+        "./projects/shared/ui-sdk/*"
       ],
-      "ui-sdk": [
-        "./dist/ui-sdk/*"
+      "mqml-angular-ui-sdk": [
+        "./projects/shared/ui-sdk/*"
+      ],
+      "mqml-angular-ui-layout-sdk/*": [
+        "./projects/shared/ui-layout/*"
+      ],
+      "mqml-angular-ui-layout-sdk": [
+        "./projects/shared/ui-layout/*"
       ]
     }
   },
@@ -35,28 +42,6 @@
     "strictInputAccessModifiers": true,
     "typeCheckHostBindings": true,
     "strictTemplates": true,
-//    /* 👇 this is the key for constructor param decorators */
-//    "enableExperimentalDecorators": true
   },
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/shared/ui-layout/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/shared/ui-layout/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/shared/ui-sdk/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/shared/ui-sdk/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/showcase/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/showcase/tsconfig.spec.json"
-    }
-  ]
+
 }

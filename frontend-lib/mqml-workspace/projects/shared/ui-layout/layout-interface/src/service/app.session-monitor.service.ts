@@ -9,7 +9,6 @@ import {AppLocalStorageService} from './app.local-storage.service';
 import {AppDefaultAuthenticationService} from './app.default-authentication.service';
 import {AppConfigurationService} from './app.configuration.service';
 import {ifvisible} from '@rosskevin/ifvisible';
-import {error} from 'ng-packagr/src/lib/utils/log';
 
 
 @UntilDestroy()

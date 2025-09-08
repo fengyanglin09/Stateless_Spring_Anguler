@@ -1,0 +1,25 @@
+<div class="topbar-menu-button" (click)="onItemClick($event)">
+  <p-overlayBadge *ngIf="showBadge()"
+                  class="icon-badge-wrapper"
+                  [value]="badgeValue"
+                  [severity]="badgeSeverity"
+                  [style]="badgeStyle"
+                  [badgeSize]="badgeSize">
+    <i class="topbar-menu-button-icon"
+       [ngClass]="icon"
+       [class]="iconClass || ''"
+       [ngStyle]="iconStyle"
+       [pTooltip]="tooltip"
+       [tooltipPosition]="tooltipPosition"
+       [tooltipStyleClass]="tooltipStyleClass"
+       [appendTo]="tooltipAppendTo"
+       [tooltipZIndex]="tooltipZIndex">
+    </i>
+  </p-overlayBadge>
+
+  <i *ngIf="!showBadge()" class="topbar-menu-button-icon" [ngClass]="icon" [class]="iconClass || ''" [ngStyle]="iconStyle"
+     [pTooltip]="tooltip" [tooltipPosition]="tooltipPosition" [tooltipStyleClass]="tooltipStyleClass"
+     [appendTo]="tooltipAppendTo" [tooltipZIndex]="tooltipZIndex"></i>
+
+  <p-menu #menu [model]="items" popup="true" appendTo="body"/>
+</div>
