@@ -89,7 +89,8 @@
               }
             ],
             "styles": [
-              "projects/showcase/src/styles.scss"
+              "projects/showcase/src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ]
           },
           "configurations": {
@@ -111,7 +112,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/showcase/src/environments/environment.ts",
+                  "with": "projects/showcase/src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
