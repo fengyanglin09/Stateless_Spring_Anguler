@@ -25,7 +25,6 @@ import {AppEnvironmentRibbonComponent} from 'mqml-angular-ui-sdk/environment-rib
     AppConfigurator,
     Toast,
     AppEnvironmentRibbonComponent,
-    AppEnvironmentRibbonComponent
   ],
   templateUrl: './app.layout.html',
   styleUrls: ['./app.layout.scss']
@@ -39,14 +38,14 @@ export class AppLayout implements OnDestroy {
 
   @ViewChild(AppSidebar) appSidebar!: AppSidebar;
 
-  // @ViewChild(AppTopbar) appTopbar!: AppTopbar;
+  @ViewChild(AppTopbar) appTopbar!: AppTopbar;
 
   constructor(
     public layoutService: LayoutService,
     public renderer: Renderer2,
     public router: Router,
     public configurationService: AppConfigurationService,
-    private cadSessionMonitorService: AppSessionMonitorService
+    private appSessionMonitorService: AppSessionMonitorService
   ) {
     this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
       if (!this.menuOutsideClickListener) {
@@ -54,9 +53,9 @@ export class AppLayout implements OnDestroy {
           const isOutsideClicked = !(
             this.appSidebar.appMenu.el.nativeElement.isSameNode(event.target) ||
             this.appSidebar.appMenu.el.nativeElement.contains(event.target)
-            // ||
-            // this.appTopbar.menuButton.nativeElement.isSameNode(event.target) ||
-            // this.appTopbar.menuButton.nativeElement.contains(event.target)
+            ||
+            this.appTopbar.menuButton.nativeElement.isSameNode(event.target) ||
+            this.appTopbar.menuButton.nativeElement.contains(event.target)
           );
           if (isOutsideClicked) {
             this.hideMenu();
@@ -83,7 +82,7 @@ export class AppLayout implements OnDestroy {
 
 
     if(configurationService.configuration.sessionMonitor.enabled){
-      this.cadSessionMonitorService.start();
+      this.appSessionMonitorService.start();
     }else {
       console.debug('Session monitor is disabled');
     }
@@ -157,8 +156,8 @@ export class AppLayout implements OnDestroy {
       this.menuOutsideClickListener();
     }
 
-    if(this.cadSessionMonitorService.active){
-      this.cadSessionMonitorService.stop();
+    if(this.appSessionMonitorService.active){
+      this.appSessionMonitorService.stop();
     }
   }
 }

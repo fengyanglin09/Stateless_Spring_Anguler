@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "primeicons/primeicons.css";
-@import '@fortawesome/fontawesome-free/css/all.css';
+//@import "primeicons/primeicons.css";
+//@import '@fortawesome/fontawesome-free/css/all.css';
+
+@use "../../../node_modules/mqml-angular-ui-layout-sdk/layout-template/ui-template/styles";
 
 
-@import "tailwindcss";
+//@import "tailwindcss";
 
 @plugin "tailwindcss-primeui";

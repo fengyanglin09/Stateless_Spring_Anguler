@@ -3,5 +3,9 @@
   "dest": "../../../dist/ui-layout",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "./layout-template/ui-template/assets",
+    "./layout-template/ui-template/styles.scss"
+  ]
 }

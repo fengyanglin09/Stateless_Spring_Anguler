@@ -72,7 +72,7 @@ export class AppAuthenticationProvider implements AppAuthenticationProvider {
             jobTitle: 'Receptionist',
             roles: this.roles,
             originalRoles: this._getAllRoles(),
-            photoUrl: 'assets/images/john-doe.jpg',
+            photoUrl: 'assets/images/jane-doe.jpg',
             supportUser: true
         };
     }

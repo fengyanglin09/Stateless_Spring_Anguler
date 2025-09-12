@@ -9,7 +9,7 @@ import {AppMenuitem} from '../app.menuitem/app.menuitem';
 
 @UntilDestroy()
 @Component({
-  selector: 'lib-app-menu',
+  selector: 'lib-app-menu, [lib-app-menu]',
   imports: [
     NgForOf,
     NgIf,
