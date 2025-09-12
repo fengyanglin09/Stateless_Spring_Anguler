@@ -83,6 +83,13 @@
             "tsConfig": "projects/showcase/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "projects/showcase/src/favicon.ico",
+              "projects/showcase/src/assets",
+              {
+                "glob": "**/*",
+                "input": "projects/shared/ui-layout/layout-template/ui-template/assets",
+                "output": "assets/"
+              },
               {
                 "glob": "**/*",
                 "input": "projects/showcase/public"

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringSecurityAuthorizationCodeResourceServerApplication {
 
-    private static String[] APPLICATION_PROFILES = {
+    private static final String[] APPLICATION_PROFILES = {
         "spring-data-core",
         "security-frontend-code-flow"
     };

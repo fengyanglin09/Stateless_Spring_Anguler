@@ -20,10 +20,12 @@ import {
   AppSearchMenuItem,
   AppSession
 } from 'mqml-angular-ui-layout-sdk/layout-interface';
-import {untilDestroyed} from '@ngneat/until-destroy';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {HttpErrorResponse} from '@angular/common/http';
 import {InputGroup} from 'primeng/inputgroup';
 
+
+@UntilDestroy()
 @Component({
   selector: '[lib-app-topbar]',
   imports: [

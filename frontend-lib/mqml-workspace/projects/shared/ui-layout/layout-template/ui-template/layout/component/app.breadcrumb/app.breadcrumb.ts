@@ -2,14 +2,16 @@ import {Component, TemplateRef} from '@angular/core';
 import {BehaviorSubject, filter} from 'rxjs';
 import {ActivatedRouteSnapshot, NavigationEnd, Router, RouterLink} from '@angular/router';
 import {AppBreadcrumbService} from 'mqml-angular-ui-layout-sdk/layout-interface';
-import {untilDestroyed} from '@ngneat/until-destroy';
 import {AsyncPipe, NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
 interface Breadcrumb {
   label: string;
   url?: string;
 }
 
+
+@UntilDestroy()
 @Component({
   selector: '[lib-app-breadcrumb]',
   imports: [
