@@ -73,7 +73,7 @@ export class AppTopbar implements OnInit {
   constructor(
     private authenticationService: AppDefaultAuthenticationService,
     public configurationService: AppConfigurationService,
-    private cadMenuService: AppMenuService) {
+    private appMenuService: AppMenuService) {
   }
 
 
@@ -121,7 +121,7 @@ export class AppTopbar implements OnInit {
   }
 
   initializeMenu(): void {
-    this.cadMenuService.getSearchMenu(this.session?.authentication || null)
+    this.appMenuService.getSearchMenu(this.session?.authentication || null)
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (menu: AppSearchMenu | void) => {
@@ -148,7 +148,7 @@ export class AppTopbar implements OnInit {
           console.error('Unknown error retrieving search menu items.', error);
         }
       });
-    this.cadMenuService.getTopBarMenuButtons(this.session?.authentication || null)
+    this.appMenuService.getTopBarMenuButtons(this.session?.authentication || null)
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (menuItems: AppMenuButton[]) => {
@@ -158,7 +158,7 @@ export class AppTopbar implements OnInit {
           console.error('Unknown error retrieving top bar button menu configuration.', error);
         }
       });
-    this.cadMenuService.getUserMenuItems(this.session?.authentication || null)
+    this.appMenuService.getUserMenuItems(this.session?.authentication || null)
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (menuItems: MenuItem[]) => {

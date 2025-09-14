@@ -5,6 +5,9 @@
 @use "../../../node_modules/mqml-angular-ui-layout-sdk/layout-template/ui-template/styles";
 
 
-//@import "tailwindcss";
+//@tailwind base;
+//@tailwind components;
+//@tailwind utilities;
+
 
 @plugin "tailwindcss-primeui";

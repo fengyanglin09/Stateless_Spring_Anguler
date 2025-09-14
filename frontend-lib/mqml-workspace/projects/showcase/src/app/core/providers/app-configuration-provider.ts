@@ -11,7 +11,7 @@ export class AppConfigurationProvider implements AppConfigurationProvider {
 
   getConfiguration(): Observable<AppConfiguration> {
     return of({
-      applicationName: 'MQML Angular Showcase',
+      applicationName: 'MQML Showcase',
       applicationDescription: 'Showcase for the MQML Angular library',
       baseUrl: environment.baseUrl,
       environmentName: 'Demo',
