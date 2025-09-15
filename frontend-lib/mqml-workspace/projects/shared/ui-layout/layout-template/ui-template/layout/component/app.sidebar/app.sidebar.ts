@@ -8,7 +8,8 @@ import {AppMenu} from '../app.menu/app.menu';
   selector: '[lib-app-sidebar]',
   imports: [
     NgIf,
-    AppMenuProfile
+    AppMenuProfile,
+    AppMenu
   ],
   templateUrl: './app.sidebar.html',
   styleUrl: './app.sidebar.scss'

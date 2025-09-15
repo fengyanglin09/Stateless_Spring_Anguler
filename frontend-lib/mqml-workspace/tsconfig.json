@@ -42,6 +42,7 @@
     "strictInputAccessModifiers": true,
     "typeCheckHostBindings": true,
     "strictTemplates": true,
+    "compilationMode": "full"
   },
 
 }

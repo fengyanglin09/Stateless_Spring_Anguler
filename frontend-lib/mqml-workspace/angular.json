@@ -83,13 +83,21 @@
             "tsConfig": "projects/showcase/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "projects/showcase/src/favicon.ico",
+              "projects/showcase/src/assets",
+              {
+                "glob": "**/*",
+                "input": "projects/shared/ui-layout/layout-template/ui-template/assets",
+                "output": "assets/"
+              },
               {
                 "glob": "**/*",
                 "input": "projects/showcase/public"
               }
             ],
             "styles": [
-              "projects/showcase/src/styles.scss"
+              "projects/showcase/src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ]
           },
           "configurations": {
@@ -111,7 +119,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/showcase/src/environments/environment.ts",
+                  "with": "projects/showcase/src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

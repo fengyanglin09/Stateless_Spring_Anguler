@@ -35,33 +35,33 @@ export class AppConfigurationService {
       }
     }
 
-    // async load(): Promise<void> {
-    //   try {
-    //     this.configuration = await firstValueFrom(
-    //       this.configurationProvider.getConfiguration().pipe(untilDestroyed(this))
-    //     );
-    //   } catch (error) {
-    //     console.error('Unknown error retrieving configuration.', error);
-    //     throw error;
-    //   }
-    // }
-
-    load(): Promise<void> {
-        return new Promise((resolve, reject) => {
-            this.configurationProvider.getConfiguration()
-                .pipe(untilDestroyed(this))
-                .subscribe({
-                    next: (configuration) => {
-                        this.configuration = configuration;
-                        resolve();
-                    },
-                    error: (error) => {
-                        console.error('Unknown error retrieving configuration.', error);
-                        reject(error);
-                    }
-                })
-        });
+    async load(): Promise<void> {
+      try {
+        this.configuration = await firstValueFrom(
+          this.configurationProvider.getConfiguration().pipe(untilDestroyed(this))
+        );
+      } catch (error) {
+        console.error('Unknown error retrieving configuration.', error);
+        throw error;
+      }
     }
+
+    // load(): Promise<void> {
+    //     return new Promise((resolve, reject) => {
+    //         this.configurationProvider.getConfiguration()
+    //             .pipe(untilDestroyed(this))
+    //             .subscribe({
+    //                 next: (configuration) => {
+    //                     this.configuration = configuration;
+    //                     resolve();
+    //                 },
+    //                 error: (error) => {
+    //                     console.error('Unknown error retrieving configuration.', error);
+    //                     reject(error);
+    //                 }
+    //             })
+    //     });
+    // }
 
     clearCache(): void {
         window.localStorage.clear();

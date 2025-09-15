@@ -20,10 +20,13 @@ import {
   AppSearchMenuItem,
   AppSession
 } from 'mqml-angular-ui-layout-sdk/layout-interface';
-import {untilDestroyed} from '@ngneat/until-destroy';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {HttpErrorResponse} from '@angular/common/http';
 import {InputGroup} from 'primeng/inputgroup';
+import {InputText} from 'primeng/inputtext';
 
+
+@UntilDestroy()
 @Component({
   selector: '[lib-app-topbar]',
   imports: [
@@ -41,7 +44,8 @@ import {InputGroup} from 'primeng/inputgroup';
     AppTopbarMenuButton,
     MegaMenu,
     SplitButton,
-    InputGroup
+    InputGroup,
+    InputText
   ],
   templateUrl: './app.topbar.html',
   styleUrl: './app.topbar.scss',
@@ -71,7 +75,7 @@ export class AppTopbar implements OnInit {
   constructor(
     private authenticationService: AppDefaultAuthenticationService,
     public configurationService: AppConfigurationService,
-    private cadMenuService: AppMenuService) {
+    private appMenuService: AppMenuService) {
   }
 
 
@@ -119,7 +123,7 @@ export class AppTopbar implements OnInit {
   }
 
   initializeMenu(): void {
-    this.cadMenuService.getSearchMenu(this.session?.authentication || null)
+    this.appMenuService.getSearchMenu(this.session?.authentication || null)
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (menu: AppSearchMenu | void) => {
@@ -146,7 +150,7 @@ export class AppTopbar implements OnInit {
           console.error('Unknown error retrieving search menu items.', error);
         }
       });
-    this.cadMenuService.getTopBarMenuButtons(this.session?.authentication || null)
+    this.appMenuService.getTopBarMenuButtons(this.session?.authentication || null)
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (menuItems: AppMenuButton[]) => {
@@ -156,7 +160,7 @@ export class AppTopbar implements OnInit {
           console.error('Unknown error retrieving top bar button menu configuration.', error);
         }
       });
-    this.cadMenuService.getUserMenuItems(this.session?.authentication || null)
+    this.appMenuService.getUserMenuItems(this.session?.authentication || null)
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (menuItems: MenuItem[]) => {

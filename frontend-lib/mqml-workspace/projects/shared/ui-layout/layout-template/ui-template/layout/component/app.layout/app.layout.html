@@ -1,5 +1,6 @@
 <lib-app-environment-ribbon [label]="configurationService.configuration.environmentName"
                         [visible]="configurationService.configuration.environmentRibbonVisible"></lib-app-environment-ribbon>
+
 <div class="layout-container" [ngClass]="containerClass()">
   <div lib-app-topbar></div>
   <div lib-app-right-menu></div>
@@ -12,7 +13,9 @@
     <div lib-app-footer></div>
   </div>
 </div>
+
 <lib-app-configurator />
+
 <p-toast key="global" />
 
 

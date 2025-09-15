@@ -6,8 +6,24 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+<!--  <link rel="icon" type="image/x-icon" href="assets/layout/images/favicon.png">-->
+
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+
+<!--    the code here will be rendered inside the <app-root> tag. -->
+<!--    In Angular, <app-root> is the selector for the root component, and its content is typically replaced by the component's template. -->
+<!--    However, any static HTML placed inside <app-root> in index.html (like your splash screen) will be present until Angular bootstraps and replaces it with the root component's template. -->
+<!--    This is commonly used for splash screens or loaders that show while the app is initializing.-->
+
+    <div class="splash-screen">
+      <div class="splash-loader-container">
+        <svg class="splash-loader" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+          <circle class="splash-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+  </app-root>
 </body>
 </html>
