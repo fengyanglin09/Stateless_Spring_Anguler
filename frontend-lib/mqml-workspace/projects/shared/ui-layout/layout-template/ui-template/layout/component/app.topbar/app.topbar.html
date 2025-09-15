@@ -17,7 +17,7 @@
   <a class="layout-topbar-company-name" routerLink="/">
     <h3>{{ configurationService.configuration.applicationName }}</h3>
   </a>
-  <div class="layout-topbar-actions-start">
+  <div class="layout-topbar-actions-start" *ngIf="model?.length">
     <p-megaMenu [model]="model" styleClass="layout-megamenu" breakpoint="0px"></p-megaMenu>
   </div>
   <div class="layout-topbar-actions-end">

@@ -23,6 +23,7 @@ import {
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {HttpErrorResponse} from '@angular/common/http';
 import {InputGroup} from 'primeng/inputgroup';
+import {InputText} from 'primeng/inputtext';
 
 
 @UntilDestroy()
@@ -43,7 +44,8 @@ import {InputGroup} from 'primeng/inputgroup';
     AppTopbarMenuButton,
     MegaMenu,
     SplitButton,
-    InputGroup
+    InputGroup,
+    InputText
   ],
   templateUrl: './app.topbar.html',
   styleUrl: './app.topbar.scss',
