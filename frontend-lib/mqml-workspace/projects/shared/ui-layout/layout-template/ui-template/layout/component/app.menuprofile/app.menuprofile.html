@@ -1,7 +1,7 @@
 <button (click)="toggleMenu()" pTooltip="Profile" [tooltipDisabled]="isTooltipDisabled()">
   <p-avatar styleClass="user-picture" [image]="session?.authentication?.photoUrl" shape="circle"></p-avatar>
   <span class="text-start">
-                <strong>{{session?.authentication?.fullName}}</strong>
+            <strong style="margin-right: 1px">{{session?.authentication?.fullName}}</strong>:
             <small>{{session?.authentication?.department}}</small>
             </span>
   <i class="layout-menu-profile-toggler pi pi-fw" [ngClass]="{ 'pi-angle-down': menuProfilePosition() === 'start' || isHorizontal(), 'pi-angle-up': menuProfilePosition() === 'end' && !isHorizontal() }"></i>
