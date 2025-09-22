@@ -1,0 +1,21 @@
+
+<lib-app-card [header]="'Basic'">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+</lib-app-card>
+<br/>
+<lib-app-card [header]="'Advanced Card'" subheader="Card Subheader" [style]="{ width: '360px' }">
+  <ng-template pTemplate="header">
+    <img alt="Card" src="assets/images/usercard.png" />
+  </ng-template>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+    quas!
+  </p>
+  <ng-template pTemplate="footer">
+    <div class="flex justify-end">
+      <lib-app-button label="Save" icon="pi pi-check" [text]="true"></lib-app-button>
+      <lib-app-button label="Cancel" icon="pi pi-times" [text]="true"
+                  styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></lib-app-button>
+    </div>
+  </ng-template>
+</lib-app-card>
