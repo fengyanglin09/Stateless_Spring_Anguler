@@ -17,7 +17,7 @@ import {AppTagComponent} from 'mqml-angular-ui-sdk/tag';
 import {Skeleton} from 'primeng/skeleton';
 
 @Component({
-  selector: 'lib-app-label-field.component',
+  selector: 'lib-app-label-field',
   imports: [
     NgClass,
     NgIf,
