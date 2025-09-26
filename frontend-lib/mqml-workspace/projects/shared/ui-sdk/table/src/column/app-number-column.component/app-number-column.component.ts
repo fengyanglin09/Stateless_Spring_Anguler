@@ -3,7 +3,7 @@ import {AppBaseFieldColumnComponent} from '../base/app-base-field-column-compone
 import {AppTableColumnBodyNumber, AppTableColumnType} from '../../model/app-table-interface';
 
 @Component({
-  selector: 'lib-app-number-column.component',
+  selector: 'lib-app-number-column',
   imports: [],
   templateUrl: './app-number-column.component.html',
   styleUrl: './app-number-column.component.scss'

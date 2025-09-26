@@ -3,6 +3,7 @@ import {CustomComponent} from './custom-component';
 import {CustomButton} from './custom-button/custom-button';
 import {CustomCard} from './custom-card/custom-card';
 import {CustomLabelField} from './custom-label-field/custom-label-field';
+import {CustomTable} from './custom-table/custom-table';
 
 
 export const routes: Routes = [
@@ -19,7 +20,7 @@ export const routes: Routes = [
       // {path: 'content-overflow-ellipsis', component: ContentOverflowEllipsisComponent, pathMatch: 'prefix', data: {breadcrumb: 'Content Overflow Ellipsis'}},
       // {path: 'dialog', component: DialogComponent, pathMatch: 'prefix', data: {breadcrumb: 'Dialog'}},
       // {path: 'editor', component: EditorComponent, pathMatch: 'prefix', data: {breadcrumb: 'Editor'}},
-      // {path: 'table', component: TableComponent, pathMatch: 'prefix', data: {breadcrumb: 'Table'}}
+      {path: 'table', component: CustomTable, pathMatch: 'full', data: {breadcrumb: 'Table'}}
     ]
   }
 ]
