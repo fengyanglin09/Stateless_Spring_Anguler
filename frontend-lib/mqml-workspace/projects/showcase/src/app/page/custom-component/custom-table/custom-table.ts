@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {TableConfiguration} from './custom-table.models';
 import {AppPageRequest} from 'mqml-angular-ui-sdk/api';
 import {FilterMetadata, PrimeTemplate} from 'primeng/api';
@@ -45,7 +45,7 @@ export class CustomTable implements OnInit {
   selectButtonOptions = [{ label: 'Active', value: 'active' },{ label: 'Retired', value: 'retired' }];
   selectButtonValue: string = 'active';
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -58,6 +58,7 @@ export class CustomTable implements OnInit {
       this.tableConfigurations[name].records = this.getMockData(pageRequest);
       this.tableConfigurations[name].totalRecords = 100;
       this.tableConfigurations[name].loading = false;
+      this.cdr.markForCheck();
     }, 1000);
 
   }
