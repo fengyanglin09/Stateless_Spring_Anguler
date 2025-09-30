@@ -11,13 +11,13 @@ import {
 import {AppClipboardService, AppSafeHtmlPipe, AppTag} from 'mqml-angular-ui-sdk/api';
 import {AppContentOverflowEllipsisComponent} from 'mqml-angular-ui-sdk/content-overflow-ellipsis';
 import {PrimeTemplate} from 'primeng/api';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {NgClass, NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
 import {Tooltip} from 'primeng/tooltip';
 import {AppTagComponent} from 'mqml-angular-ui-sdk/tag';
 import {Skeleton} from 'primeng/skeleton';
 
 @Component({
-  selector: 'lib-app-label-field.component',
+  selector: 'lib-app-label-field',
   imports: [
     NgClass,
     NgIf,
@@ -26,7 +26,8 @@ import {Skeleton} from 'primeng/skeleton';
     AppTagComponent,
     AppContentOverflowEllipsisComponent,
     AppSafeHtmlPipe,
-    Skeleton
+    Skeleton,
+    NgTemplateOutlet,
   ],
   templateUrl: './app-label-field.component.html',
   styleUrl: './app-label-field.component.scss'

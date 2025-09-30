@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppDefaultAuthenticationService} from '../../service/app.default-authentication.service';
 import {AppConfigurationService} from '../../service/app.configuration.service';
-import {untilDestroyed} from '@ngneat/until-destroy';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {ButtonDirective} from 'primeng/button';
 import {Ripple} from 'primeng/ripple';
 import {NgIf} from '@angular/common';
 
+@UntilDestroy()
 @Component({
   selector: 'lib-app-landing',
   imports: [

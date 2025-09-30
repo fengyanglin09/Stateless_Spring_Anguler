@@ -1,2 +1,2 @@
-export * from './src/cad-table.component'
-export * from './src/cad-table-interface'
+export * from './src/app-table.component/app-table.component'
+export * from './src/model/app-table-interface'

@@ -5,7 +5,7 @@ import {NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'lib-app-route-column.component',
+  selector: 'lib-app-route-column',
   imports: [
     NgIf,
     RouterLink

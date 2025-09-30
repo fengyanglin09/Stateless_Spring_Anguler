@@ -1,0 +1,60 @@
+<div class="flex flex-col gap-2 p-1">
+  <lib-app-table #simpleTable styleClass="p-datatable-sm p-datatable-striped table-simple-example"
+             stateKey="table-simple-example"
+             [headerTitle]="'Simple Table'"
+             [columns]="tableConfigurations['simpleTable'].columns"
+             [defaultColumns]="tableConfigurations['simpleTable'].defaultColumns"
+             dataKey="id"
+             [filters]="tableConfigurations['simpleTable'].filters"
+             [lazy]="true"
+             [paginator]="true"
+             [multiSortMeta]="[{
+                field: 'testCode',
+                order: -1
+           }]"
+             [loading]="tableConfigurations['simpleTable'].loading"
+             (onPageRequest)="onPageRequest('simpleTable', $event)"
+             [value]="tableConfigurations['simpleTable'].records"
+             [resizableColumns]="true"
+             [reorderableColumns]="true"
+             [scrollable]="true"
+             [scrollHeight]="'300px'"
+             [totalRecords]="tableConfigurations['simpleTable'].totalRecords">
+    <ng-template pTemplate="paginatorleft">
+      <p-selectButton [options]="selectButtonOptions" [(ngModel)]="selectButtonValue"
+                      optionLabel="label" optionValue="value" aria-labelledby="basic" size="small" />
+    </ng-template>
+  </lib-app-table>
+
+
+  <lib-app-table #groupedTable styleClass="p-datatable-sm p-datatable-striped mt-4 table-grouped-example"
+             [headerTitle]="'Grouped Table'"
+             [columns]="tableConfigurations['groupedTable'].columns"
+             dataKey="id"
+             [filters]="tableConfigurations['groupedTable'].filters"
+             [lazy]="true"
+             [paginator]="true"
+             [loading]="tableConfigurations['groupedTable'].loading"
+             (onPageRequest)="onPageRequest('groupedTable', $event)"
+             [value]="tableConfigurations['groupedTable'].records"
+             [resizableColumns]="true"
+             [reorderableColumns]="true"
+             [groupRowsBy]="'orderNumber'"
+             [rowGroupMode]="'subheader'"
+             [scrollable]="true"
+             [scrollHeight]="'300px'"
+             [totalRecords]="tableConfigurations['groupedTable'].totalRecords">
+
+    <ng-template pTemplate="groupheader" let-rowItem>
+      <td [colSpan]="tableConfigurations['groupedTable'].columns.length">
+        {{ rowItem.orderNumber }}
+      </td>
+    </ng-template>
+
+  </lib-app-table>
+</div>
+
+
+<ng-template #testColumn let-rowItem>
+  <p-progressBar [value]="rowItem.activityPercentage" [style]="{'width': '200px'}"></p-progressBar>
+</ng-template>

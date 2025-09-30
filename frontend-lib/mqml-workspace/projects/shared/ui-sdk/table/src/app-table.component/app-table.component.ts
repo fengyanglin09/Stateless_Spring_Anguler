@@ -42,7 +42,6 @@ import {
 @Component({
   selector: 'lib-app-table',
   imports: [
-    TableModule,
     Badge,
     NgIf,
     Button,
@@ -53,10 +52,15 @@ import {
     NgTemplateOutlet,
     AppTableBodyColumnComponent,
     AppTableHeaderColumnComponent,
-    AppTableColumnSelectionDialogComponent
+    AppTableColumnSelectionDialogComponent,
+    TableModule
+  ],
+  providers: [
+    DecimalPipe
   ],
   templateUrl: './app-table.component.html',
-  styleUrl: './app-table.component.scss'
+  styleUrls: ['./app-table.component.scss'],
+  standalone: true,
 })
 export class AppTableComponent implements AfterContentInit, OnChanges, OnInit {
 

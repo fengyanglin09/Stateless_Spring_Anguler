@@ -1,0 +1,26 @@
+<div class="label-field-examples flex flex-col">
+  <div class="example-container" *ngFor="let example of examples">
+    <p-panel [header]="example.title" styleClass="panel-example {{example.styleClass || example.id}}">
+      <ng-container *ngFor="let template of example.templates">
+        <lib-app-label-field [label]="template.label"
+                         [value]="template.value?.type === 'static' ? template.value?.value : undefined"
+                         [styleClass]="template.styleClass"
+                         [overflowEllipsis]="template.overflowEllipsis !== undefined ? template.overflowEllipsis : true"
+                         [tags]="template.tags" (onCopySuccess)="handleCopySuccess($event)"
+                         [infoTooltip]="template.infoTooltip"
+                         [infoTooltipStyleClass]="template.infoTooltipStyleClass">
+          <ng-container *ngIf="template.value?.type === 'input'">
+            <input type="text" pInputText [ngModel]="template.value?.value"/>
+          </ng-container>
+          <ng-container *ngIf="template.customToolbar">
+            <ng-template pTemplate="toolbar">
+              <i class="fa-solid fa-star custom-styles-favorite cursor-pointer"
+                 [ngClass]="{'fa-solid fa-start': favorite, 'fa-regular fa-start': !favorite}"
+                 (click)="favorite = !favorite"></i>
+            </ng-template>
+          </ng-container>
+        </lib-app-label-field>
+      </ng-container>
+    </p-panel>
+  </div>
+</div>

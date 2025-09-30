@@ -1,5 +1,27 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {AppTableChip, AppTableColumn, AppTableColumnInstance, AppTableColumnType, AppTableTag} from '../../model/app-table-interface';
+import {TableModule} from 'primeng/table';
+import {ButtonDirective} from 'primeng/button';
+import {
+  NgClass,
+  NgForOf,
+  NgIf,
+  NgStyle,
+  NgSwitch,
+  NgSwitchCase,
+  NgSwitchDefault,
+  NgTemplateOutlet
+} from '@angular/common';
+import {ProgressSpinner} from 'primeng/progressspinner';
+import {Tooltip} from 'primeng/tooltip';
+import {AppCheckboxColumnComponent} from '../app-checkbox-column.component/app-checkbox-column.component';
+import {AppDateColumnComponent} from '../app-date-column.component/app-date-column.component';
+import {Chip} from 'primeng/chip';
+import {AppMenuColumnComponent} from '../app-menu-column.component/app-menu-column.component';
+import {AppNumberColumnComponent} from '../app-number-column.component/app-number-column.component';
+import {AppRouteColumnComponent} from '../app-route-column.component/app-route-column.component';
+import {AppTagColumnComponent} from '../app-tag-column.component/app-tag-column.component';
+import {AppTextColumnComponent} from '../app-text-column.component/app-text-column.component';
 
 
 export interface AppTableRowItemColumn {
@@ -12,7 +34,28 @@ export interface AppTableRowItemColumn {
 
 @Component({
   selector: '[lib-app-table-body-column]',
-  imports: [],
+  imports: [
+    TableModule,
+    ButtonDirective,
+    NgClass,
+    NgForOf,
+    NgStyle,
+    ProgressSpinner,
+    NgIf,
+    Tooltip,
+    NgSwitch,
+    AppCheckboxColumnComponent,
+    NgSwitchCase,
+    AppDateColumnComponent,
+    Chip,
+    AppMenuColumnComponent,
+    AppNumberColumnComponent,
+    AppRouteColumnComponent,
+    AppTagColumnComponent,
+    AppTextColumnComponent,
+    NgSwitchDefault,
+    NgTemplateOutlet
+  ],
   templateUrl: './app-table-body-column.component.html',
   styleUrl: './app-table-body-column.component.scss'
 })

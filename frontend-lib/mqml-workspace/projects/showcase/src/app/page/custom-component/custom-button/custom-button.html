@@ -1,0 +1,38 @@
+<div class="grid gap-2">
+  <p-card [header]="'Default'" class="button-card">
+    <div class="flex">
+      <lib-app-button [label]="'Submit'" (click)="showMessage('Submitted')"></lib-app-button>
+      <lib-app-button [label]="'Disabled'" [disabled]="true" styleClass="ml-2"
+                  (click)="showMessage('Disabled this message should not be shown')"></lib-app-button>
+      <lib-app-button [label]="'Link'" styleClass="p-button-text ml-2"></lib-app-button>
+    </div>
+  </p-card>
+  <p-card [header]="'Icons'" class="button-card">
+    <div class="flex">
+      <lib-app-button icon="fa-solid fa-flask-vial"></lib-app-button>
+      <lib-app-button label="Save" icon="fa-regular fa-floppy-disk" styleClass="ml-2"></lib-app-button>
+      <lib-app-button label="Save" icon="fa-regular fa-floppy-disk" iconPos="right" styleClass="ml-2"></lib-app-button>
+    </div>
+  </p-card>
+  <p-card [header]="'Badge Default'" class="button-card">
+    <div class="flex">
+      <lib-app-button [rounded]="false" label="Emails" badgeValue="2"></lib-app-button>
+      <ng-container *ngFor="let severity of badgeSeverities">
+        <lib-app-button [rounded]="false" label="Messages" [badgeSeverity]="severity"
+                    icon="fa-regular fa-message" badgeValue="25" styleClass="ml-3"></lib-app-button>
+      </ng-container>
+    </div>
+  </p-card>
+  <p-card [header]="'Badge Overlay'" class="button-card">
+    <div class="flex">
+      <lib-app-button [badgeOverlay]="true" [rounded]="false" icon="fa-solid fa-message"
+                  badgeValue="1" (click)="showMessage('Clicked')"></lib-app-button>
+      <lib-app-button [badgeOverlay]="true" [rounded]="false" icon="fa-solid fa-bell"
+                  styleClass="ml-3" (click)="showMessage('Clicked')"></lib-app-button>
+      <lib-app-button [badgeOverlay]="true" [rounded]="true" icon="fa-solid fa-message" badgeValue="10"
+                  styleClass="ml-3" (click)="showMessage('Clicked')"></lib-app-button>
+      <lib-app-button [badgeOverlay]="true" [rounded]="true" icon="fa-solid fa-bell"
+                  styleClass="ml-3" (click)="showMessage('Clicked')"></lib-app-button>
+    </div>
+  </p-card>
+</div>

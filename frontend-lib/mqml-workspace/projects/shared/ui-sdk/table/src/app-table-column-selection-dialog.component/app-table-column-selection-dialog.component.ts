@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {CDK_DRAG_CONFIG} from '@angular/cdk/drag-drop';
 import {PickList} from 'primeng/picklist';
-import {AppDialogComponent} from '../../../dialog';
+import {AppDialogComponent} from 'mqml-angular-ui-sdk/dialog';
 import {AppTableColumn} from '../model/app-table-interface';
-import {AppTagComponent} from '../../../tag';
+import {AppTagComponent} from 'mqml-angular-ui-sdk/tag';
 import {PrimeTemplate} from 'primeng/api';
 import {ButtonDirective} from 'primeng/button';
 import {NgIf} from '@angular/common';

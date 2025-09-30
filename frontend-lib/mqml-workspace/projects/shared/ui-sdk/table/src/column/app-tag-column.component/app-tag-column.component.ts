@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AppBaseColumnComponent} from '../base/app-base-column-component';
 import {AppTableColumnBodyTag, AppTableColumnType, AppTableStyle, AppTableTag} from '../../model/app-table-interface';
-import {AppTagComponent} from '../../../../tag';
+import {AppTagComponent} from 'mqml-angular-ui-sdk/tag';
 import {NgForOf, NgIf} from '@angular/common';
 
 @Component({

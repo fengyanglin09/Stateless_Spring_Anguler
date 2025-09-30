@@ -19,7 +19,11 @@ import {Tooltip} from 'primeng/tooltip';
     Tooltip
   ],
   templateUrl: './app.menuprofile.html',
-  styleUrl: './app.menuprofile.scss'
+  standalone: true,
+  styleUrl: './app.menuprofile.scss',
+  host: {
+    class: 'layout-menu-profile'
+  }
 })
 export class AppMenuProfile implements OnDestroy {
   layoutService = inject(LayoutService);
