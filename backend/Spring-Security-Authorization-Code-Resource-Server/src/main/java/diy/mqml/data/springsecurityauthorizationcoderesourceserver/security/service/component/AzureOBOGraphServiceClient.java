@@ -16,7 +16,10 @@ import org.springframework.stereotype.Component;
 public class AzureOBOGraphServiceClient {
 
 
-    private static final String GRAPH_ME_ENDPOINT = "User.Read";
+    // Always use the full scope URI for Graph
+    private static final String[] GRAPH_SCOPES = new String[] {
+            "https://graph.microsoft.com/.default"
+    };
 
     private final AzureSecurityPropertyClient azurePropertyService;
 
@@ -30,19 +33,22 @@ public class AzureOBOGraphServiceClient {
 
 
     private GraphServiceClient getGraphServiceClient(Jwt jwt) {
-        final String clientId = this.azurePropertyService.findClientId().orElse(null);
-        final String tenantId = this.azurePropertyService.findTenantId().orElse(null); // or "common" for multi-tenant apps
-        final String clientSecret = this.azurePropertyService.findClientSecret().orElse(null);
-        final String[] scopes = new String[] {GRAPH_ME_ENDPOINT};
+        final String clientId = azurePropertyService.findClientId().orElseThrow();
+        final String tenantId = azurePropertyService.findTenantId().orElseThrow();
+        final String clientSecret = azurePropertyService.findClientSecret().orElseThrow();
 
-        // This is the incoming token to exchange using on-behalf-of flow
+        // This is the incoming user token your backend received
         final String oboToken = jwt.getTokenValue();
 
         final OnBehalfOfCredential credential = new OnBehalfOfCredentialBuilder()
-                .clientId(clientId).tenantId(tenantId).clientSecret(clientSecret)
-                .userAssertion(oboToken).build();
+                .clientId(clientId)
+                .tenantId(tenantId)
+                .clientSecret(clientSecret)
+                .userAssertion(oboToken)
+                .build();
 
-        return new GraphServiceClient(credential, scopes);
+        // Graph client uses the OBO credential with full Graph scopes
+        return new GraphServiceClient(credential, GRAPH_SCOPES);
     }
 
 
