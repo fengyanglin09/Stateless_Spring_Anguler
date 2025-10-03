@@ -35,6 +35,8 @@ public class CustomJwtAuthenticationConverter implements Converter<Jwt, Abstract
                         .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                         .toList());
 
+        principal.setJwt(jwt);
+
         // Create authorities
         List<SimpleGrantedAuthority> authorities = roles.stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))

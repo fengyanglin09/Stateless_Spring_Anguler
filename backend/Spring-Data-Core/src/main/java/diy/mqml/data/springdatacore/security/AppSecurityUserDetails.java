@@ -4,6 +4,7 @@ import diy.mqml.data.springdatacore.security.securityUser.AppSecurityUser;
 import diy.mqml.data.springdatacore.security.securityUserSession.AppSecurityUserSession;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,6 +21,7 @@ public class AppSecurityUserDetails implements UserDetails, Authentication, Cred
     protected AppSecurityUser user;
     protected List<? extends GrantedAuthority> authorities;
     protected boolean authenticated = false;
+    private Jwt jwt;
 
     public AppSecurityUserDetails(AppSecurityUser user, Collection<? extends GrantedAuthority> authorities) {
         this.user = user;

@@ -2,8 +2,14 @@ package diy.mqml.data.springsecurityauthorizationcoderesourceserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"diy.mqml.data"})
+@EnableJpaRepositories(basePackages = "diy.mqml.data")
+@EntityScan(basePackages = "diy.mqml.data")
 public class SpringSecurityAuthorizationCodeResourceServerApplication {
 
     private static final String[] APPLICATION_PROFILES = {
