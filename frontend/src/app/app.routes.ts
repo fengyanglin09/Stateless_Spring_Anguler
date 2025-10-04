@@ -4,10 +4,11 @@ import {Profile} from './components/profile/profile';
 import {inject} from '@angular/core';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {OauthGuard} from './core/security/oauth.guard';
+import {AppLayout} from './features/layout';
 
 
 export const routes: Routes = [
-  { path: '', component: Home },
+  { path: '', component: AppLayout },
   {
     path: 'spa',
     canActivateChild: [OauthGuard],

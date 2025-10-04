@@ -1,0 +1,77 @@
+.cad-user-info-dialog .user-info-dialog.p-dialog {
+
+  box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+  min-width: 600px !important;
+  max-width: 900px !important;
+
+  .p-datatable table {
+    min-width: 500px;
+  }
+
+  .user {
+
+    display: flex;
+
+    .basic-info,
+    .basic-info-skeleton {
+      margin-left: 14px;
+    }
+
+    .basic-info {
+      .name {
+        font-size: 120%;
+        font-weight: bold;
+        padding-bottom: 2px;
+      }
+
+      .job-title,
+      .department {
+        font-weight: lighter;
+        color: rgb(79, 79, 79);
+      }
+
+    }
+
+  }
+
+  .p-avatar.p-component.p-avatar-image {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 70px !important;
+    }
+
+  }
+
+  .roles {
+
+    margin-top: 20px;
+
+    .p-avatar .p-avatar-icon {
+      font-size: .75rem;
+      width: unset;
+      height: unset;
+    }
+
+    .p-avatar.p-avatar-circle {
+      width: 20px;
+      height: 20px;
+    }
+
+    .p-datatable-table {
+
+      th {
+        border-top: 0px;
+      }
+
+      th, td {
+        padding: 8px 8px;
+      }
+
+      tbody > tr:last-child > td {
+        border-bottom: 0;
+      }
+    }
+  }
+}
