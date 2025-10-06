@@ -1,24 +1,32 @@
-import {Component, computed} from '@angular/core';
+import {Component, computed, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {NgClass} from '@angular/common';
 import {LayoutService} from '../../services/layout.service';
 import {AppFooter} from '../../components/app.footer/app.footer';
+import {AppTopbar} from '../../components/app.topbar/app.topbar';
+import {AppSidebarMenu} from '../../components/app.sidebar-menu/app.sidebar-menu';
 
 @Component({
   selector: 'app-layout',
   imports: [
     RouterOutlet,
     NgClass,
-    AppFooter
+    AppFooter,
+    AppTopbar,
+    AppSidebarMenu
   ],
   templateUrl: './app.layout.html',
   styleUrl: './app.layout.scss'
 })
 export class AppLayout {
 
+  @ViewChild(AppSidebarMenu, {static: true}) sidebarMenu!: AppSidebarMenu;
+
   constructor(
     public layoutService: LayoutService
   ) {}
+
+
 
 
   containerClass = computed(() => {

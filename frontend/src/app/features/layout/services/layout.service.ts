@@ -1,6 +1,7 @@
 import {computed, effect, Injectable, signal, Signal, WritableSignal} from '@angular/core';
-import {Subject} from 'rxjs';
+import {map, Observable, of, Subject} from 'rxjs';
 import {MenuItem} from 'primeng/api';
+import {AppConfiguration} from '../models/app.configuration.model';
 
 export type MenuMode = 'static' | 'overlay' | 'slim-plus' | 'slim' | 'horizontal' | 'reveal' | 'drawer';
 
@@ -34,10 +35,6 @@ export interface MenuChangeEvent {
     routeEvent?: boolean;
 }
 
-export interface TabCloseEvent {
-    tab: MenuItem;
-    index: number;
-}
 
 @Injectable({
     providedIn: 'root'
@@ -74,34 +71,8 @@ export class LayoutService {
 
     private configUpdate = new Subject<layoutConfig>();
 
-    private overlayOpen = new Subject<any>();
-
-    private menuSource = new Subject<MenuChangeEvent>();
-
     private resetSource = new Subject();
 
-    menuSource$ = this.menuSource.asObservable();
-
-    resetSource$ = this.resetSource.asObservable();
-
-    configUpdate$ = this.configUpdate.asObservable();
-
-    overlayOpen$ = this.overlayOpen.asObservable();
-
-    isSidebarActive: Signal<boolean> = computed(() => this.layoutState().overlayMenuActive || this.layoutState().staticMenuMobileActive);
-
-    isDarkTheme: Signal<boolean> = computed(() => {
-        console.log('Is dark theme....:', this.layoutConfig().darkTheme);
-        return this.layoutConfig().darkTheme;
-    });
-
-    isOverlay: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'overlay');
-
-    isSlim: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'slim');
-
-    isSlimPlus: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'slim-plus');
-
-    isHorizontal: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'horizontal');
 
     transitionComplete: WritableSignal<boolean> = signal<boolean>(false);
 
@@ -174,60 +145,74 @@ export class LayoutService {
         });
     }
 
-    onMenuToggle() {
-        if (this.isOverlay()) {
-            this.layoutState.update((prev) => ({ ...prev, overlayMenuActive: !this.layoutState().overlayMenuActive }));
-
-            if (this.layoutState().overlayMenuActive) {
-                this.overlayOpen.next(null);
-            }
-        }
-
-        if (this.isDesktop()) {
-            this.layoutState.update((prev) => ({ ...prev, staticMenuDesktopInactive: !this.layoutState().staticMenuDesktopInactive }));
-        } else {
-            this.layoutState.update((prev) => ({ ...prev, staticMenuMobileActive: !this.layoutState().staticMenuMobileActive }));
-
-            if (this.layoutState().staticMenuMobileActive) {
-                this.overlayOpen.next(null);
-            }
-        }
-    }
-
-    onMenuProfileToggle() {
-        this.layoutState.update((prev) => ({ ...prev, menuProfileActive: !prev.menuProfileActive }));
-    }
-
-    openRightMenu() {
-        this.layoutState.update((prev) => ({ ...prev, rightMenuActive: true }));
-    }
-
-    isDesktop() {
-        return window.innerWidth > 991;
-    }
-
-    isMobile() {
-        return !this.isDesktop();
-    }
-
     onConfigUpdate() {
         this._config = { ...this.layoutConfig() };
         this.configUpdate.next(this.layoutConfig());
     }
 
-    onMenuStateChange(event: MenuChangeEvent) {
-        this.menuSource.next(event);
-    }
+
 
     reset() {
         this.resetSource.next(true);
     }
 
-    onOverlaySubmenuOpen() {
-        this.overlayOpen.next(null);
-    }
 
-    hideConfigSidebar() {
-        this.layoutState.update((prev) => ({ ...prev, configSidebarVisible: false }));
-    }
+
+
+    /**
+     *
+     * ===========================================================================================================
+     * */
+
+  getConfiguration(): Observable<AppConfiguration> {
+
+    // return this.applicationService.fetchEnvironmentInfo()
+    //   .pipe(
+    //     map(info=> {
+    //       return {
+    //         baseUrl: environment.baseUrl,
+    //         applicationName: this.title.getTitle(),
+    //         environmentName: info.environment,
+    //         environmentRibbonVisible: info.environmentRibbon ??= true,
+    //         sessionMonitor: {
+    //           enabled: true,
+    //           idleDuration: 120 * 60 // 2 hours
+    //         },
+    //         applicationFooter: {
+    //           leftContent: `<span> For immediate assistance, call Help Desk (4-5500) and reference ${this.title.getTitle()} (System ID: ${this.applicationCI}). Otherwise, <a target="_new" href="https://mcsm.service-now.com/serviceconnect?id=sc_cat_item_guide&amp;sys_id=5d3aa41387cacd900d4011783cbb359c&amp;sysparm_category=3c0d800bdb0560d49986166e1396190a" class="underline text-blue-600 font-medium">Submit a Ticket</a></span>`,
+    //           rightContent: `© ${new Date().getFullYear()} Mayo Foundation for Medical Education and Research. All rights reserved.`
+    //         }
+    //       }
+    //     })
+    //   );
+
+      return of({
+        baseUrl: "",
+        applicationName: "MQML App",
+        environmentName: "Dev",
+        environmentRibbonVisible: true,
+        sessionMonitor: {
+          enabled: true,
+          idleDuration: 120 * 60 // 2 hours
+        },
+        applicationFooter: {
+          leftContent: ``,
+          rightContent: ``
+        }
+      })
+  }
+
+
+
+  sideMenuToggle: WritableSignal<boolean> = signal<boolean>(false);
+
+  setSideMenuMobileActive(isActive: boolean): void {
+    this.sideMenuToggle.set(isActive);
+  }
+
+  getSideMenuMobileActiveStatus(): boolean {
+    return this.sideMenuToggle();
+  }
+
+
 }

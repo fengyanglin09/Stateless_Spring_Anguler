@@ -1,0 +1,27 @@
+<div class="layout-topbar-start">
+  <a class="layout-topbar-logo" routerLink="/">
+    <img class="layout-company-logo"
+         width="180"
+         height="40"
+         style="padding-top: 10px"
+         src="assets/images/mayo-clinic-white.png"
+         alt="Mayo Clinic"/>
+  </a>
+
+  <a #menuButton class="layout-menu-button" (click)="onMenuButtonClick()">
+    <i class="pi" [ngClass]="isSideMenuOpen ? 'pi-chevron-left' : 'pi-chevron-right'"></i>
+  </a>
+</div>
+
+<div class="layout-topbar-end">
+  <a class="layout-topbar-company-name" routerLink="/">
+    <h3 style="font-size: 1.5rem; color: white">{{ this.appConfig?.applicationName }}</h3>
+  </a>
+
+  <div class="layout-topbar-actions-end" >
+
+
+  </div>
+
+</div>
+
