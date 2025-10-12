@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, effect, inject, OnInit} from '@angular/core';
 import {LayoutService} from '../../services/layout.service';
 import {RouterLink} from '@angular/router';
 import {AppConfiguration} from '../../models/app.configuration.model';
@@ -25,13 +25,20 @@ export class AppTopbar implements OnInit {
 
     isSideMenuOpen: boolean = false;
 
+    constructor() {
+      effect(() => {
+        this.isSideMenuOpen = this.layoutService.getSideMenuMobileActiveStatus();
+      });
+    }
+
+
     async ngOnInit(): Promise<void> {
         this.appConfig = await firstValueFrom(this.layoutService.getConfiguration());
     }
 
-  toggleSideMenu(): void {
-    this.layoutService.setSideMenuMobileActive(!this.layoutService.getSideMenuMobileActiveStatus());
-  }
+    toggleSideMenu(): void {
+      this.layoutService.setSideMenuMobileActive(!this.layoutService.getSideMenuMobileActiveStatus());
+    }
 
     onMenuButtonClick() {
       this.isSideMenuOpen = !this.isSideMenuOpen;
