@@ -1,0 +1,21 @@
+::ng-deep .p-drawer {
+  width: 17rem !important;
+}
+
+/* Add to your component CSS */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 1990; /* Just below the drawer */
+}
+
+
+.menu-group-label-class {
+  color: #1e272c;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

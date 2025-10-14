@@ -1,0 +1,38 @@
+.search-input {
+  background-color: #fff;
+  width: 13em;
+}
+
+.search-input::placeholder {
+  color: #888; // Replace with your desired color
+}
+
+
+
+
+
+:host ::ng-deep .p-splitbutton {
+  border-radius: 0 !important;
+  overflow: hidden !important; /* keeps edges aligned */
+}
+
+:host ::ng-deep .p-splitbutton .p-button,
+:host ::ng-deep .p-splitbutton .p-splitbutton-menubutton {
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+:host ::ng-deep .p-splitbutton .p-button {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  //background-color: #1976d2;
+  //border-color: #1976d2;
+}
+
+:host ::ng-deep .p-splitbutton {
+  border-top-left-radius: 0.5em !important;
+  border-bottom-left-radius: 0.5em !important;
+}
+
+
+

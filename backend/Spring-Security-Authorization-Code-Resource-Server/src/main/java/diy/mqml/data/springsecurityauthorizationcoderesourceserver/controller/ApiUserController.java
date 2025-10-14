@@ -1,7 +1,6 @@
 package diy.mqml.data.springsecurityauthorizationcoderesourceserver.controller;
 
 
-
 import diy.mqml.data.springdatacore.security.AppSecurityUserDetails;
 import diy.mqml.data.springdatacore.security.securityUser.AppSecurityDefaultUser;
 import diy.mqml.data.springsecurityauthorizationcoderesourceserver.security.customizedItems.CustomJwtAuthenticationToken;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +29,10 @@ public class ApiUserController {
 
     //todo - this needs to return the user info with the photo
     @GetMapping("/login")
-    public ResponseEntity<String> login(@AuthenticationPrincipal Jwt jwt) {
+    public ResponseEntity<String> login(@AuthenticationPrincipal AppSecurityUserDetails appUserDetails) {
 
         //load user info from graph api
-        AzureGraphApiClient graphApiClient = this.azureOBOGraphServiceClient.getGraphApiClient(jwt);
+        AzureGraphApiClient graphApiClient = this.azureOBOGraphServiceClient.getGraphApiClient(appUserDetails.getJwt());
 
         AppSecurityDefaultUser user = AppSecurityDefaultUser.builder().build();
 

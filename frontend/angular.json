@@ -33,7 +33,7 @@
               "src/silent-refresh.html"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
             ]
           },
           "configurations": {

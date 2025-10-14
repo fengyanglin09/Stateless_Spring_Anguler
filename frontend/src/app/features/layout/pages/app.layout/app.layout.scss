@@ -1,0 +1,18 @@
+/* frontend/src/app/features/layout/pages/app.layout/app.layout.css */
+[app-topbar] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Must be higher than overlay/dialog z-index */
+}
+
+
+/* frontend/src/app/features/layout/pages/app.layout/app.layout.css */
+[app-footer] {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000; /* Higher than overlay/dialog z-index */
+}

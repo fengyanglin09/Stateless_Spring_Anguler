@@ -1,9 +1,9 @@
 package diy.mqml.data.springsecurityauthorizationcoderesourceserver.controller;
 
 
+import diy.mqml.data.springdatacore.config.argumentResolver.currentAuthenticatedUser.CurrentUser;
 import diy.mqml.data.springdatacore.security.securityUser.AppSecurityUser;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,16 +18,9 @@ public class ApiController {
     }
 
     @GetMapping("/protected")
-    public ResponseEntity<String> protectedEndpoint(@AuthenticationPrincipal AppSecurityUser user) {
-
-
-
-
-
+    public ResponseEntity<String> protectedEndpoint(@CurrentUser AppSecurityUser user) {
 
         return ResponseEntity.ok("Hello, " + user.getFullName() + "! This is a protected endpoint.");
-
-
 
     }
 }

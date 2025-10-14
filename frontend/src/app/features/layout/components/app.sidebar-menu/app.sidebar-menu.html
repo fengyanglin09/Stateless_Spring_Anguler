@@ -1,0 +1,67 @@
+
+
+
+<p-drawer header=""
+          [(visible)]="visible"
+          (onShow)="onShowMenu()"
+          (onHide)="onCloseMenu()"
+          (visibleChange)="onVisibleChange($event)"
+          [modal]="true"
+          position="left"
+          [baseZIndex]=900
+          [autoZIndex]="true"
+          [fullScreen]="false"
+          [closable]="false"
+          [maskStyle]="{ 'background': 'transparent', 'pointer-events': 'none' }"
+
+>
+
+
+
+<ng-template pTemplate="content" >
+
+
+  <div style="padding-top: 3em">
+
+    <p-menu [model]="items"
+            class="flex justify-center"
+            styleClass="w-full md:w-60"
+            [popup]="false"
+            [style]="{'border': '0', 'background': 'transparent'}"
+    >
+
+      <ng-template #submenuheader let-item>
+        <span class="menu-group-label-class">{{ item.label }}</span>
+      </ng-template>
+
+      <ng-template #item let-item>
+        <a pRipple class="flex items-center p-menu-item-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+
+          @if (item.badge){
+            <p-badge class="ml-auto" [value]="item.badge" />
+          }
+
+          @if (item.shortcut){
+            <span class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">
+                {{ item.shortcut }}
+            </span>
+          }
+
+
+        </a>
+      </ng-template>
+
+    </p-menu>
+
+  </div>
+
+</ng-template>
+
+
+</p-drawer>
+
+
+
+<!--<div class="drawer-overlay" *ngIf="visible" (click)="onCloseMenu()"></div>-->

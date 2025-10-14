@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use './assets/layout/layout.scss' as *;
+@import "primeicons/primeicons.css";
+
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+@import '@fortawesome/fontawesome-free/css/all.min.css';

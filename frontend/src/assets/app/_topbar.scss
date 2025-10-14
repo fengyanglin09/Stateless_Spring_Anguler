@@ -1,0 +1,134 @@
+.layout-topbar {
+
+  .layout-topbar-start {
+    width: 17rem;
+    padding-right: 10px;
+  }
+
+  .layout-topbar-logo {
+    margin-top: 10px;
+
+    .layout-company-logo {
+      width: 160px;
+    }
+  }
+
+  .layout-topbar-company-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+      color: var(--topbar-item-text-color);
+      font-weight: 600;
+      font-size: 1.75rem;
+    }
+  }
+
+  .layout-topbar-end {
+
+    .layout-topbar-actions-end {
+
+      .layout-topbar-items {
+
+        li > .p-inputgroup.search-input-group {
+          height: 35px;
+
+          .p-splitbutton > .p-splitbutton-button {
+            border-start-end-radius: 0;
+            border-end-end-radius: 0;
+          }
+
+        }
+
+        li > div {
+
+          min-width: 25rem;
+          right: -27px;
+          border-radius: 0;
+
+          .topbar-menu-button {
+            .icon-badge-wrapper {
+              position: relative;
+              display: inline-block;
+            }
+          }
+
+          .user-profile {
+            display: flex;
+            padding: 0 10px;
+
+            .p-avatar.p-component.p-avatar-image img {
+              margin-top: 10px;
+            }
+
+            .user-details {
+              flex-grow: 1;
+              margin-left: 10px;
+
+              .basic-info {
+                padding-bottom: 5px;
+
+                .name {
+                  padding-bottom: 2px;
+                }
+
+                .job-title,
+                .department {
+                  font-size: 80%;
+                  color: rgb(79, 79, 79);
+                }
+              }
+
+              .roles {
+                display: inline-block;
+                padding-top: 4px;
+
+                .role-pill {
+                  float: left !important;
+                  margin-right: 5px;
+                  margin-bottom: 5px;
+                  background-color: #337ab7;
+                  padding: 0.2em 0.6em 0.3em;
+                  font-size: 75%;
+                  line-height: 1;
+                  color: #fff;
+                  white-space: nowrap;
+                  border-radius: 0.25em;
+                  font-weight: 700;
+                }
+              }
+
+
+            }
+
+          }
+
+          .btn-edit {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+          }
+
+        }
+
+        li.divider {
+          margin-top: 5px;
+          padding-bottom: 5px;
+          border-top: 1px solid #e2e8f0
+        }
+
+        .environment .success {
+          color: #3c763d;
+        }
+
+        .environment .danger {
+          color: #a94442;
+        }
+      }
+    }
+
+  }
+
+
+}

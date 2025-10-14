@@ -1,0 +1,15 @@
+<div class="layout-footer grid grid-cols-2 content-between m-0">
+  <div class="pt-2 text-bold" [innerHTML]="applicationFooter.leftContent"></div>
+
+  @if (applicationFooter.rightContent) {
+    <div class="pt-2 text-right" [innerHTML]="applicationFooter.rightContent" ></div>
+  }
+  @else {
+    <ng-container *ngTemplateOutlet="defaultRightFooter" ></ng-container>
+  }
+
+</div>
+
+<ng-template #defaultRightFooter>
+  <div class="pt-2 pr-4 text-right">&copy; {{currentYear}} MQML Foundation for Medical Education and Research. All Rights Reserved.</div>
+</ng-template>
