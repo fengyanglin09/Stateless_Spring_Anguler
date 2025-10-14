@@ -23,7 +23,7 @@ import {Router} from '@angular/router';
 export class AppTopbarSearch implements OnInit {
 
   searchOptions: MenuItem[] = [];
-  selectedSearchItem?: AppSearchMenuItem;
+  selectedSearchItem!: AppSearchMenuItem;
   searchTerm: string = '';
 
   constructor(private router: Router) {
@@ -45,7 +45,7 @@ export class AppTopbarSearch implements OnInit {
 
 
   onSearch() {
-
+    this.onSearchSelected(this.selectedSearchItem)
   }
 
   /**

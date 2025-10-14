@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2000; /* Must be higher than overlay/dialog z-index */
+  z-index: 1000; /* Must be higher than overlay/dialog z-index */
 }
 
 
@@ -14,5 +14,5 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  z-index: 2000; /* Higher than overlay/dialog z-index */
+  z-index: 1000; /* Higher than overlay/dialog z-index */
 }

@@ -1,10 +1,18 @@
-@if (searchOptions.length) {
-  <li>
-    <p-inputGroup>
-      <p-splitbutton [label]="selectedSearchItem?.label" [model]="searchOptions"  raised severity="info" />
-      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" pInputText
-             placeholder="Search term">
-      <p-button icon="pi pi-search" (click)="onSearch()"/>
-    </p-inputGroup>
-  </li>
-}
+
+<p-inputGroup>
+  <p-splitbutton
+    [label]="selectedSearchItem?.label"
+    [model]="searchOptions"
+    [rounded]="false"
+    [outlined]="false"
+    [menuStyle]="{'background': 'white'}"
+    severity="info"
+    appendTo="body"
+  ></p-splitbutton>
+  <input type="text" class="search-input" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" pInputText
+         placeholder="    Search term">
+  <p-button icon="pi pi-search" (click)="onSearch()"
+            severity="info"
+  />
+</p-inputGroup>
+

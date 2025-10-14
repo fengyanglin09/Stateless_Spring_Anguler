@@ -65,7 +65,7 @@ export class AppSidebarMenu implements OnInit {
           {
             label: 'Search',
             icon: 'pi pi-search',
-            shortcut: '⌘+S'
+            // shortcut: '⌘+S'
           }
         ]
       },
@@ -75,7 +75,7 @@ export class AppSidebarMenu implements OnInit {
           {
             label: 'Settings',
             icon: 'pi pi-cog',
-            shortcut: '⌘+O'
+            // shortcut: '⌘+O'
           },
           {
             label: 'Messages',
@@ -85,7 +85,7 @@ export class AppSidebarMenu implements OnInit {
           {
             label: 'Logout',
             icon: 'pi pi-sign-out',
-            shortcut: '⌘+Q'
+            // shortcut: '⌘+Q'
           }
         ]
       },
