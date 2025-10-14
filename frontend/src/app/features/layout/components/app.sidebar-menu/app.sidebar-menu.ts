@@ -1,4 +1,4 @@
-import {Component, effect, OnInit, ViewChild} from '@angular/core';
+import {Component, effect, OnInit} from '@angular/core';
 import {Drawer} from 'primeng/drawer';
 import {LayoutService} from '../../services/layout.service';
 import {MenuItem, PrimeTemplate} from 'primeng/api';
@@ -51,12 +51,16 @@ export class AppSidebarMenu implements OnInit {
       //   separator: true
       // },
       {
-        label: 'Documents',
+        label: 'Work Space',
         items: [
           {
-            label: 'New',
-            icon: 'pi pi-plus',
-            shortcut: '⌘+N'
+            label: 'List Of Apps',
+            icon: 'pi pi-th-large',
+            // shortcut: '⌘+N',
+            // command(event: MenuItemCommandEvent) {
+            //   console.log('Menu item clicked');
+            // },
+            // routerLink:[]
           },
           {
             label: 'Search',
@@ -66,7 +70,7 @@ export class AppSidebarMenu implements OnInit {
         ]
       },
       {
-        label: 'Profile',
+        label: 'Components',
         items: [
           {
             label: 'Settings',

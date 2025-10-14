@@ -2,3 +2,6 @@
 
 @use './assets/layout/layout.scss' as *;
 @import "primeicons/primeicons.css";
+
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
