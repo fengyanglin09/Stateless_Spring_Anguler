@@ -1,4 +1,6 @@
-import {AuthConfig, OAuthService} from 'angular-oauth2-oidc';
+import {AuthConfig, OAuthEvent, OAuthService} from 'angular-oauth2-oidc';
+import {filter} from 'rxjs';
+import {Router} from '@angular/router';
 
 const tenantId = 'a25fff9c-3f63-4fb2-9a8a-d9bdd0321f9a'; // Replace with your Azure Entra ID tenant ID
 
@@ -32,16 +34,17 @@ export const authCodeFlowConfig: AuthConfig = {
 };
 
 
-export function initializeAuth(oauthService: OAuthService) {
+export function initializeAuth(oauthService: OAuthService, router: Router) {
   return () => {
     oauthService.configure(authCodeFlowConfig);
     oauthService.setupAutomaticSilentRefresh();
     return oauthService.loadDiscoveryDocumentAndTryLogin()
       .then(() => {
         if (oauthService.hasValidAccessToken()) {
-          const token = oauthService.getAccessToken();
-          console.log('Access Token:', token);
-          console.log('Token Claims:', oauthService.getIdentityClaims());
+          // const token = oauthService.getAccessToken();
+          // console.log('Access Token:', token);
+          // console.log('Token Claims:', oauthService.getIdentityClaims());
+          console.log('OAuth successfully initialized');
         }
       })
       .catch((error) => {
