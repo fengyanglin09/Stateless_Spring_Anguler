@@ -36,7 +36,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAuth,
-      deps: [OAuthService],
+      deps: [OAuthService, Router],
       multi: true,
     }
   ],

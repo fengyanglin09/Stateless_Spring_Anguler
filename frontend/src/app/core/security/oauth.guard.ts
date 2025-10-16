@@ -8,6 +8,6 @@ export const OauthGuard: CanActivateFn = () => {
   if (oauthService.isAuthenticated()) {
     return true;
   }
-  oauthService.login();
+  oauthService.logout();
   return false;
 };

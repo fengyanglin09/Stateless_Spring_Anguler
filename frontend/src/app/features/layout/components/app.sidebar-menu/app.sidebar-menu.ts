@@ -5,6 +5,7 @@ import {MenuItem, PrimeTemplate} from 'primeng/api';
 import {Menu} from 'primeng/menu';
 import {Badge} from 'primeng/badge';
 import {Ripple} from 'primeng/ripple';
+import {AppAuthenticationService} from '../../../../core/services/app-authentication.service';
 
 @Component({
   selector: '[app-sidebar-menu]',
@@ -26,7 +27,10 @@ export class AppSidebarMenu implements OnInit {
 
   items: MenuItem[] | undefined;
 
-  constructor(private layoutService: LayoutService) {
+  constructor(
+    private layoutService: LayoutService,
+    private authService: AppAuthenticationService
+  ) {
     effect(() => {
       this.visible = this.layoutService.getSideMenuMobileActiveStatus()
     });
@@ -86,6 +90,9 @@ export class AppSidebarMenu implements OnInit {
             label: 'Logout',
             icon: 'pi pi-sign-out',
             // shortcut: '⌘+Q'
+            command: () => {
+              this.authService.logout();
+            }
           }
         ]
       },

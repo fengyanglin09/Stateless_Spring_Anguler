@@ -34,22 +34,46 @@ export const authCodeFlowConfig: AuthConfig = {
 };
 
 
+// export function initializeAuth(oauthService: OAuthService, router: Router) {
+//   return () => {
+//     oauthService.configure(authCodeFlowConfig);
+//     oauthService.setupAutomaticSilentRefresh();
+//     return oauthService.loadDiscoveryDocumentAndTryLogin()
+//       .then(() => {
+//         if (oauthService.hasValidAccessToken()) {
+//           // const token = oauthService.getAccessToken();
+//           // console.log('Access Token:', token);
+//           // console.log('Token Claims:', oauthService.getIdentityClaims());
+//           console.log('OAuth successfully initialized');
+//         }
+//       })
+//       .catch((error) => {
+//         console.error('Auth error:', error);
+//         throw error;
+//       });
+//   };
+// }
+
 export function initializeAuth(oauthService: OAuthService, router: Router) {
   return () => {
     oauthService.configure(authCodeFlowConfig);
     oauthService.setupAutomaticSilentRefresh();
+
     return oauthService.loadDiscoveryDocumentAndTryLogin()
       .then(() => {
         if (oauthService.hasValidAccessToken()) {
           // const token = oauthService.getAccessToken();
           // console.log('Access Token:', token);
           // console.log('Token Claims:', oauthService.getIdentityClaims());
-          console.log('OAuth successfully initialized');
+          console.log('✅ OAuth successfully initialized');
+        } else {
+          console.warn('⚠️ No valid access token found, redirecting to login...');
+          router.navigate(['/login']);
         }
       })
       .catch((error) => {
-        console.error('Auth error:', error);
-        throw error;
+        console.error('❌ Auth error:', error);
+        router.navigate(['/login']);
       });
   };
 }

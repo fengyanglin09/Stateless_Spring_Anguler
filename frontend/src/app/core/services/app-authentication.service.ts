@@ -57,30 +57,33 @@ export class AppAuthenticationService {
    * this method listens for specific OAuth events related to user authentication and session management. It filters the event stream to only include events that indicate significant changes in the authentication state, such as receiving a token, encountering a token error, session termination, or errors loading the discovery document.
    * These filtered events can then be used to trigger appropriate actions in the application, such as updating the UI, redirecting the user, or logging information for debugging purposes.
    * */
-  loginEventHandling(){
-
+  loginEventHandling() {
     this.oAuthService.events
       .pipe(
-        filter(
-          (e: OAuthEvent) => e.type === 'token_received' ||
-            e.type === 'token_error' ||
-            e.type === 'session_terminated' ||
-            e.type === 'discovery_document_load_error'
+        filter((e: OAuthEvent) =>
+          e.type === 'token_received' ||
+          e.type === 'token_error' ||
+          e.type === 'session_terminated' ||
+          e.type === 'discovery_document_load_error' ||
+          e.type === 'silent_refresh_timeout' ||
+          e.type === 'silent_refresh_error'
         )
-      ).subscribe((e) => {
-
-        console.log(e);
+      )
+      .subscribe((e) => {
+        console.log('OAuth Event:', e.type);
 
         switch (e.type) {
           case 'token_received':
             console.log('✅ Authentication succeeded');
-            this.router.navigate(['/']);
             break;
+
           case 'token_error':
-          case 'discovery_document_load_error':
+          case 'silent_refresh_timeout':
+          case 'silent_refresh_error':
           case 'session_terminated':
-            console.log('❌ Authentication failed or ended');
-            this.router.navigate(['/login']);
+          case 'discovery_document_load_error':
+            console.warn('❌ Authentication failed or ended');
+            this.logout()
             break;
         }
       });
@@ -88,8 +91,9 @@ export class AppAuthenticationService {
 
 
 
+
   logout(){
-    this.oAuthService.logOut();
+    this.oAuthService.logOut(true); // performs full logout including redirect to the identity provider's logout endpoint
     console.log('Logout, Redirecting to login page...');
     this.router.navigate(['/login']);
   }
