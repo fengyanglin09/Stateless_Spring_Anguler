@@ -10,6 +10,7 @@ import {providePrimeNG} from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import Aura from '@primeuix/themes/aura';
+import {AppAuthenticationService} from './core/services/app-authentication.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -36,9 +37,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAuth,
-      deps: [OAuthService, Router],
+      deps: [OAuthService, AppAuthenticationService],
       multi: true,
     }
+
   ],
 
 };

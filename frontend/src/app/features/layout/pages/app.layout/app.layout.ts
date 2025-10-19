@@ -5,6 +5,8 @@ import {LayoutService} from '../../services/layout.service';
 import {AppFooter} from '../../components/app.footer/app.footer';
 import {AppTopbar} from '../../components/app.topbar/app.topbar';
 import {AppSidebarMenu} from '../../components/app.sidebar-menu/app.sidebar-menu';
+import {AppEnvironmentRibbon} from '../../components/app.environment-ribbon/app.environment-ribbon';
+import {AppConfigurationService} from '../../../../core/services/app-configuration.service';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +15,8 @@ import {AppSidebarMenu} from '../../components/app.sidebar-menu/app.sidebar-menu
     NgClass,
     AppFooter,
     AppTopbar,
-    AppSidebarMenu
+    AppSidebarMenu,
+    AppEnvironmentRibbon
   ],
   templateUrl: './app.layout.html',
   styleUrl: './app.layout.scss'
@@ -23,7 +26,8 @@ export class AppLayout {
   @ViewChild(AppSidebarMenu, {static: true}) sidebarMenu!: AppSidebarMenu;
 
   constructor(
-    public layoutService: LayoutService
+    public layoutService: LayoutService,
+    public appConfiguration: AppConfigurationService,
   ) {}
 
 

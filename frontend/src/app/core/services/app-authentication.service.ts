@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {OAuthEvent, OAuthService} from 'angular-oauth2-oidc';
+import {AuthConfig, OAuthEvent, OAuthService} from 'angular-oauth2-oidc';
 import {Router} from '@angular/router';
 import {filter, merge, Observable, of, ReplaySubject, shareReplay, switchMap, timer} from 'rxjs';
 import {AppSession} from '../../shared/models/appSession.model';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AppAuthenticationService {
 
 
   constructor(private oAuthService: OAuthService,
+              private http: HttpClient,
               private router: Router
   ) {
 
@@ -103,4 +105,15 @@ export class AppAuthenticationService {
     return of();
   }
 
+  loadUserProfile() {
+    const token = this.oAuthService.getAccessToken();
+    this.http.get('http://localhost:8080/api/user/login', {responseType: 'text'}).subscribe({
+      next: (response: any) => {
+        const ii = response;
+        const i = 0;
+      },
+      error: (err: any) => console.error('API Error:', err),
+    });
+    const i = 0;
+  }
 }

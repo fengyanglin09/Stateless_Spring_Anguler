@@ -1,5 +1,13 @@
 <!--<cad-environment-ribbon [label]="configurationService.configuration.environmentName"-->
 <!--                        [visible]="configurationService.configuration.environmentRibbonVisible"></cad-environment-ribbon>-->
+
+
+<app-environment-ribbon
+  [label]="appConfiguration.configuration.environmentName"
+  [visible]="appConfiguration.configuration.environmentRibbonVisible"
+>
+</app-environment-ribbon>
+
 <div class="layout-container" [ngClass]="containerClass()">
   <div app-topbar></div>
   <div #appSidebarMenu app-sidebar-menu ></div>
