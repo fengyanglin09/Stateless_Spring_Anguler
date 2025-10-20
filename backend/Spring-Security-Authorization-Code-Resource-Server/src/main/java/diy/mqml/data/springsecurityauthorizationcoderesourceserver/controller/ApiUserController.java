@@ -29,7 +29,7 @@ public class ApiUserController {
 
     //todo - this needs to return the user info with the photo
     @GetMapping("/login")
-    public ResponseEntity<String> login(@AuthenticationPrincipal AppSecurityUserDetails appUserDetails) {
+    public ResponseEntity<AppSecurityDefaultUser> login(@AuthenticationPrincipal AppSecurityUserDetails appUserDetails) {
 
         //load user info from graph api
         AzureGraphApiClient graphApiClient = this.azureOBOGraphServiceClient.getGraphApiClient(appUserDetails.getJwt());
@@ -48,6 +48,8 @@ public class ApiUserController {
 
         AppSecurityUserDetails userDetails = authentication.getUser();
 
+        user.setRoles(userDetails.getUser().getRoles());
+
         userDetails.setUser(user);
 
         authentication.setUser(userDetails);
@@ -55,7 +57,7 @@ public class ApiUserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
 
-        return ResponseEntity.ok("updated");
+        return ResponseEntity.ok(user);
     }
 
     /**
