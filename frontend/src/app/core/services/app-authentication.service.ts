@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {filter, merge, Observable, of, ReplaySubject, shareReplay, switchMap, timer} from 'rxjs';
 import {AppSession} from '../../shared/models/appSession.model';
 import {HttpClient} from '@angular/common/http';
+import {AppUser} from '../../shared/models/appUser.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,18 @@ export class AppAuthenticationService {
   sessionAutoRefreshIntervalTrigger: Observable<number> = timer(0, this.sessionRefreshRate * 60 * 1000);
   sessionManualRefreshTrigger: ReplaySubject<AppSession> = new ReplaySubject(1);
 
+  private _appSession: AppSession = {
+    isAuthenticated: false
+  };
+
+
+  public get appSession(): AppSession {
+    return this._appSession;
+  }
+
+  public set appSession(value: AppSession) {
+    this._appSession = value;
+  }
 
   constructor(private oAuthService: OAuthService,
               private http: HttpClient,
@@ -102,18 +115,37 @@ export class AppAuthenticationService {
 
   private getUpdatedSession() {
     //todo - to be implemented
-    return of();
+
+    return of(this._appSession);
   }
 
   loadUserProfile() {
-    const token = this.oAuthService.getAccessToken();
-    this.http.get('http://localhost:8080/api/user/login', {responseType: 'text'}).subscribe({
-      next: (response: any) => {
-        const ii = response;
-        const i = 0;
+    // const token = this.oAuthService.getAccessToken();
+    this.http.get('http://localhost:8080/api/user/login').subscribe({
+      next: (response: AppUser) => {
+        this._appSession.user = response;
+        this._appSession.photoUrl = this.getUserPhoto(response) as string;
+        this.appSession.isAuthenticated = true;
+        this.appSession.isSupportUser = response.roles?.some(role => ['ADMINISTRATOR', 'SUPPORT', 'ADMIN'].includes(role));
       },
-      error: (err: any) => console.error('API Error:', err),
+      error: (err: any) => console.error('API Error - can not load user profile:', err),
     });
-    const i = 0;
   }
+
+  public getUserPhoto(appUser: AppUser): string | null {
+    if (!appUser?.photo) return null;
+    if (typeof appUser.photo === 'string') {
+      // Already base64, just return as data URL
+      return `data:image/png;base64,${appUser.photo}`;
+    }
+    const byteArray = new Uint8Array(appUser.photo);
+    let binary = '';
+    for (let i = 0; i < byteArray.length; i++) {
+      binary += String.fromCharCode(byteArray[i]);
+    }
+    const base64String = btoa(binary);
+    return `data:image/png;base64,${base64String}`;
+  }
+
+
 }

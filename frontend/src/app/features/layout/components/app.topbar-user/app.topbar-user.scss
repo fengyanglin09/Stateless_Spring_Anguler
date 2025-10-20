@@ -1,0 +1,70 @@
+.user-profile-container{
+
+  min-width: 25rem;
+  right: -27px;
+  border-radius: 0;
+
+  .topbar-menu-button {
+    .icon-badge-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+  }
+
+  .user-profile {
+    display: flex;
+    padding: 0 10px;
+
+    .p-avatar.p-component.p-avatar-image img {
+      margin-top: 10px;
+    }
+
+    .user-details {
+      flex-grow: 1;
+      margin-left: 10px;
+
+      .basic-info {
+        padding-bottom: 5px;
+
+        .name {
+          padding-bottom: 2px;
+        }
+
+        .job-title,
+        .department {
+          font-size: 80%;
+          color: rgb(79, 79, 79);
+        }
+      }
+
+      .roles {
+        display: inline-block;
+        padding-top: 4px;
+
+        .role-pill {
+          float: left !important;
+          margin-right: 5px;
+          margin-bottom: 5px;
+          background-color: #337ab7;
+          padding: 0.2em 0.6em 0.3em;
+          font-size: 75%;
+          line-height: 1;
+          color: #fff;
+          white-space: nowrap;
+          border-radius: 0.25em;
+          font-weight: 700;
+        }
+      }
+
+
+    }
+
+  }
+
+  .btn-edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+}

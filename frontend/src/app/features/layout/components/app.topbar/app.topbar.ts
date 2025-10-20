@@ -5,13 +5,15 @@ import {AppConfiguration} from '../../models/app.configuration.model';
 import {firstValueFrom, take} from 'rxjs';
 import {NgClass} from '@angular/common';
 import {AppTopbarSearch} from '../app.topbar-search/app.topbar-search';
+import {AppTopbarUser} from '../app.topbar-user/app.topbar-user';
 
 @Component({
   selector: '[app-topbar]',
   imports: [
     RouterLink,
     NgClass,
-    AppTopbarSearch
+    AppTopbarSearch,
+    AppTopbarUser
   ],
   templateUrl: './app.topbar.html',
   styleUrl: './app.topbar.scss',

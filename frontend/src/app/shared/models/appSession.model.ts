@@ -1,3 +1,5 @@
+import {AppUser} from './appUser.model';
+
 export interface AppSession {
   isAuthenticated: boolean;
   accessToken?: string;
@@ -15,5 +17,10 @@ export interface AppSession {
   selectedTenant?: string;
   selectedRole?: string;
   preferences?: any;
+
+  user?: AppUser;
+  photoUrl?: string;
+
+  isSupportUser?: boolean;
 
 }
