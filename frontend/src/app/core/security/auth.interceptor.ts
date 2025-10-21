@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment.development';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -9,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Intercepting request to:', req.url);
-    if (req.url.startsWith('http://localhost:8080/api/')) {
+    if (req.url.startsWith(environment.apiUrl)) {
       let idToken = this.oauthService.getIdToken();
       const accessToken = this.oauthService.getAccessToken();
       console.log('Id Token for request:', idToken ? idToken : 'Missing');
